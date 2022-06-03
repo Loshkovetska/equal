@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 import { wma } from './WMA/index'
 import { pledger } from './Pledger/index'
 import { wood } from './Wood/index'
@@ -21,8 +12,20 @@ import { figpage } from './Fig'
 import { febc } from './FEBC'
 import { pnp } from './PNP'
 const cases = [
-
-febc, wma, wood, pledger ,locallolo ,health ,figpage ,gamejob ,transworld ,donbest ,takepill ,cryptocoin
+  febc,
+  wma,
+  wood,
+  pledger,
+  locallolo,
+  health,
+  figpage,
+  gamejob,
+  transworld,
+  donbest,
+  takepill,
+  cryptocoin,
 ]
 
 export default cases
+
+//pnd removed
