@@ -1,0 +1,108 @@
+.cursor__ball {
+  display: none;
+
+  @media (min-width: 1024px) {
+    display: block;
+    z-index: 99;
+    position: fixed;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    will-change: transform;
+    opacity: 0.6;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  &.cursor-dark svg {
+    fill: rgba(43, 39, 39, 0.5);
+    cursor: pointer;
+  }
+
+  &.cursor-play {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1 !important;
+
+    svg {
+      fill: #e1f23a;
+      width: 170px;
+      height: 170px;
+      cursor: pointer;
+    }
+
+    &::after {
+      cursor: pointer;
+      content: 'play our reel';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: center;
+      text-transform: uppercase;
+      color: #2b2727;
+      white-space: nowrap;
+      transform: translate(-50%, -50%) scale(1);
+      transition: all 0.3s ease-in;
+    }
+  }
+
+  &.cursor-case {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1 !important;
+    svg {
+      fill: #e1f23a;
+      width: 170px;
+      height: 170px;
+    }
+    &::after {
+      content: 'View case';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: center;
+      text-transform: uppercase;
+      color: #2b2727;
+      white-space: nowrap;
+      transform: translate(-50%, -50%);
+      transition: all 0.3s ease-in;
+    }
+  }
+}
+
+.playing-video .cursor-play::after {
+  content: 'pause our reel';
+}
+
+.video-need-replay .cursor-play::after {
+  content: 'play again';
+}
+
+@media (min-width: 1024px) {
+  body:not(.safari) {
+    svg {
+      transition: all 0.3s ease-in;
+    }
+
+    &::after {
+      content: '';
+      transition: all 0.3s ease-in;
+      transform: scale(0);
+    }
+  }
+  body.cursor__ball {
+    display: block;
+  }
+}
+@media (max-width: 1024px) {
+  body.cursor__ball {
+    display: none;
+  }
+}

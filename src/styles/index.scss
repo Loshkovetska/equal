@@ -1,0 +1,323 @@
+@font-face {
+  font-family: 'AeonikTrial';
+  src: url('../fonts/AeonikTRIAL-Regular.otf');
+  src: local('AeonikTRIAL Regular'), local('AeonikTRIAL-Regular'),
+    url('../fonts/AeonikTRIAL-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'AeonikTrial';
+  src: url('../fonts/AeonikTRIAL-Bold.otf');
+  src: local('AeonikTRIAL Bold'), local('AeonikTRIAL-Bold'),
+    url('../fonts/AeonikTRIAL-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'AeonikTrial', sans-serif;
+  text-decoration: none;
+}
+body {
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &::-webkit-scrollbar-track {
+    display: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    display: none;
+  }
+}
+
+html.has-scroll-smooth {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  -webkit-perspective: 100%;
+  -webkit-perspective-origin: 100% 100% none;
+  -webkit-backface-visibility: hidden;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &::-webkit-scrollbar-track {
+    display: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    display: none;
+  }
+}
+
+[data-scroll-container] {
+  overflow: hidden scroll;
+}
+
+.m-0 {
+  margin: 0;
+}
+.mb-10 {
+  margin-bottom: 10px;
+}
+.mb-15 {
+  margin-bottom: 15px;
+}
+.mb-20 {
+  margin-bottom: 20px;
+}
+.mb-25 {
+  margin-bottom: 25px;
+}
+.mb-30 {
+  margin-bottom: 30px;
+}
+.mb-35 {
+  margin-bottom: 35px;
+}
+.mb-40 {
+  margin-bottom: 40px;
+}
+.mb-45 {
+  margin-bottom: 45px;
+}
+.mb-50 {
+  margin-bottom: 50px;
+}
+.mb-55 {
+  margin-bottom: 55px;
+}
+.mb-60 {
+  margin-bottom: 60px;
+}
+.mb-80 {
+  margin-bottom: 80px;
+}
+.mb-100 {
+  margin-bottom: 100px;
+}
+.mb-130 {
+  margin-bottom: 130px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+.mt-15 {
+  margin-top: 15px;
+}
+.mt-20 {
+  margin-top: 20px;
+}
+.mt-25 {
+  margin-top: 25px;
+}
+.mt-30 {
+  margin-top: 30px;
+}
+.mt-35 {
+  margin-top: 35px;
+}
+.mt-40 {
+  margin-top: 40px;
+}
+.mt-45 {
+  margin-top: 45px;
+}
+.mt-50 {
+  margin-top: 50px;
+}
+.mt-55 {
+  margin-top: 55px;
+}
+.mt-60 {
+  margin-top: 60px;
+}
+.mt-80 {
+  margin-top: 80px;
+}
+.mt-100 {
+  margin-top: 100px;
+}
+.mt-130 {
+  margin-top: 130px;
+}
+
+.page-dark {
+  .footer {
+    background: transparent;
+  }
+  .hamburger {
+    visibility: hidden;
+  }
+}
+
+.c-scrollbar {
+  display: none !important;
+}
+
+.smooth {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &::-webkit-scrollbar-track {
+    display: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    display: none;
+  }
+}
+
+.scroll-down-translate {
+  position: fixed;
+  top: calc(100vh - 90px);
+  right: 45px;
+  z-index: 100 !important;
+  height: 30px;
+  font-size: 14px;
+  line-height: 30px;
+  text-transform: uppercase;
+  color: #2b2727;
+  white-space: nowrap;
+  overflow: hidden;
+  span {
+    text-align: right;
+    display: block;
+    transform: translateY(-30px);
+    animation: spin 3s 2.5s infinite ease-in-out;
+  }
+
+  &.hidden {
+    opacity: 0;
+  }
+
+  @media (max-width: 1024px) {
+    opacity: 0;
+  }
+
+  @media (max-width: 650px) {
+    display: none;
+  }
+}
+
+// .playing-video {
+//   @media (max-width: 1024px) {
+//     .intro .scroll-down {
+//       opacity: 0 !important;
+//     }
+//     .play-reel .scroll-down-translate {
+//       opacity: 1;
+//     }
+//   }
+// }
+
+.custom-button-wrapper {
+  display: none;
+}
+
+body.safari {
+  min-height: 100%;
+  transition: background-color 0.3s ease;
+
+  .header {
+    opacity: 0;
+  }
+
+  .header-fixed {
+    .btn-magnet-wrap {
+      transform: translate(0, 0);
+      transition: none;
+    }
+  }
+
+  .smooth {
+    will-change: transform;
+  }
+
+  .intro {
+    will-change: transform;
+  }
+
+  .pin-spacer {
+    will-change: transform;
+  }
+
+  .vision {
+    transition: opacity 1s ease;
+  }
+  .play-reel,
+  .pin-spacer {
+    -webkit-backface-visibility: hidden;
+  }
+
+  .play-reel__video {
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform-origin: center bottom;
+    -webkit-transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+    will-change: width, height;
+  }
+  .main-projects__row-cont {
+    will-change: transform;
+  }
+
+  .cases-item .parallax {
+    will-change: transform;
+  }
+}
+
+body.dark {
+  width: 100%;
+  background: #2b2727 !important;
+  [data-scroll-container] {
+    min-height: 100vh;
+    display: flex;
+    display: -webkit-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    //flex-direction: column;
+    //align-items: stretch;
+    position: relative;
+    z-index: 6;
+  }
+  .page-dark {
+    width: 100%;
+    min-height: 100vh;
+    flex: 1 0 auto;
+    position: relative;
+  }
+
+  .footer {
+    background: #2b2727;
+    @media (max-width: 1024px) {
+      min-height: 100%;
+    }
+  }
+}
+
+.page-dark {
+  .header {
+    z-index: 12;
+  }
+}
+
+[data-load-container] {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+}

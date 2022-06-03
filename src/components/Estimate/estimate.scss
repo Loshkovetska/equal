@@ -1,0 +1,19 @@
+.estimate {
+  position: absolute;
+  z-index: 1;
+  padding: 25px 0;
+  opacity: 0;
+  cursor: pointer;
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+
+  .btn-primary {
+    background: #e1f23a;
+
+    &:hover {
+      background: #fff;
+    }
+  }
+}

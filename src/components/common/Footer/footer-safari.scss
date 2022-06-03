@@ -1,0 +1,29 @@
+.footer.safari {
+  position: relative;
+  .footer__right-text {
+    transform: translateY(100%);
+    transition: transform 0.6s;
+    transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .footer__col-text {
+    transform: translateY(100%);
+    transition: transform 0.5s;
+  }
+  .slide-wrap {
+    overflow: hidden;
+  }
+  .slide-up {
+    transform: translateY(-100%);
+    transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  & * {
+    &:not(.footer__right-text) {
+      transition: opacity 0.5s ease-in;
+      opacity: 0;
+    }
+  }
+
+  .footer__arrow {
+    transition: transform 2s 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+}

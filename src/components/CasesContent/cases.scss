@@ -1,0 +1,144 @@
+.cases-page {
+  width: 100%;
+  position: relative;
+  padding: 0 40px;
+  &::before {
+    content: '';
+    position: absolute;
+    top: -188px;
+    left: calc(50% - 204.25px);
+    background: #e1f23a;
+    border-radius: 310.5px;
+    background: linear-gradient(0deg, #e1f23a, #e1f23a);
+    filter: blur(68px);
+    width: 425px;
+    height: 423px;
+
+    @media (max-width: 1024px) {
+      display: none;
+    }
+  }
+
+  .selected-cases__title-text {
+    visibility: hidden;
+  }
+
+  .cases-list {
+    margin-bottom: 150px;
+  }
+
+  &__back {
+    cursor: pointer;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+
+    padding-top: 100px;
+    position: absolute;
+
+    .whitespace {
+      margin: 0 8px 0 0;
+    }
+
+    .btn--split {
+      color: #2b2727;
+      font-size: 14px;
+      line-height: 110%;
+    }
+
+    .word:first-child {
+      top: -1px;
+    }
+
+    @media (max-width: 1024px) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .selected-cases__title {
+      margin: 0;
+    }
+  }
+
+  @media (max-width: 650px) {
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .selected-cases__title {
+    @media (max-width: 768px) {
+      .selected-cases__title {
+        align-items: center;
+        &-cont {
+          justify-content: center;
+          &:first-child {
+            margin-left: -60px;
+          }
+        }
+      }
+    }
+    @media (max-width: 650px) {
+      .selected-cases__title {
+        &-cont {
+          &:first-child {
+            margin-left: -30px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.cases-menu {
+  display: flex;
+  justify-content: center;
+  margin: -34px 0 50px;
+
+  @media (max-width: 1024px) {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    margin-top: 16px;
+    padding: 16px;
+    font-size: 18px;
+    line-height: 140%;
+    text-transform: uppercase;
+    color: #2b2727;
+    border: 2px solid #2b2727;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.5s linear;
+
+    &.active {
+      border: 2px solid transparent;
+      background: linear-gradient(0deg, #e1f23a, #e1f23a);
+    }
+
+    &:hover {
+      border: 2px solid #e1f23a;
+    }
+
+    &:not(:last-child) {
+      margin-right: 16px;
+    }
+
+    @media (max-width: 1024px) {
+      padding: 12px;
+    }
+  }
+}
+
+.cases-item {
+  @media (max-width: 650px) {
+    display: block !important;
+  }
+}

@@ -1,0 +1,141 @@
+.lines {
+  width: 100%;
+  position: relative;
+  @media (max-width: 1024px) {
+    height: 500px;
+    min-height: unset;
+  }
+
+  @media (max-width: 650px) {
+    height: 400px;
+  }
+
+  &__container {
+    width: 100%;
+    height: 100vh;
+    max-height: 600px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 90px;
+
+    @media (max-width: 1440px) {
+      margin-bottom: 80px;
+    }
+    @media (max-width: 1300px) {
+      margin-bottom: 100px;
+    }
+
+    @media (max-width: 1024px) {
+      height: 100%;
+    }
+  }
+
+  &__text {
+    &.transparent {
+      color: transparent;
+      -webkit-text-stroke-color: #2b2727;
+      -webkit-text-stroke-width: 1px;
+    }
+
+    &,
+    span {
+      white-space: nowrap;
+      font-size: 84px;
+      line-height: 76px;
+      text-align: center;
+      text-transform: uppercase;
+
+      @media (max-width: 1024px) {
+        font-size: 70px;
+        line-height: 63px;
+      }
+      @media (max-width: 650px) {
+        font-size: 36px;
+        line-height: 32px;
+        padding: 0 10px;
+      }
+    }
+
+    &.icon {
+      padding: 0 20px;
+    }
+  }
+
+  &__item {
+    position: absolute;
+    top: 50%;
+    left: -10vw;
+    // width: 120vw;
+    overflow: hidden;
+    padding: 23px;
+    background: #e1f23a;
+    transform-origin: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &-inner {
+      position: relative;
+      width: 120vw;
+    }
+    &.one,
+    &.two {
+      color: #363030;
+      background: #e1f23a;
+    }
+
+    &.one {
+      top: 16%;
+      transform: rotate(-7.96deg);
+
+      @media (max-width: 650px) {
+        top: 27%;
+      }
+    }
+    &.two {
+      z-index: 1;
+      top: 52%;
+      transform: rotate(22.68deg);
+      @media (max-width: 1024px) {
+        top: 47%;
+      }
+      @media (max-width: 650px) {
+        top: 29%;
+      }
+    }
+
+    &.three {
+      top: 60%;
+      color: #e1f23a;
+      background: #363030;
+
+      .lines__text.transparent {
+        -webkit-text-stroke-color: #e1f23a;
+      }
+
+      @media (max-width: 1024px) {
+        top: 61%;
+      }
+      @media (max-width: 650px) {
+        top: 56%;
+      }
+    }
+    white-space: nowrap;
+    font-size: 84px;
+    line-height: 76px;
+    text-align: center;
+    text-transform: uppercase;
+    @media (max-width: 1024px) {
+      padding: 21px;
+      font-size: 70px;
+      line-height: 63px;
+    }
+
+    @media (max-width: 650px) {
+      font-size: 36px;
+      line-height: 32px;
+      padding: 19px;
+    }
+  }
+}

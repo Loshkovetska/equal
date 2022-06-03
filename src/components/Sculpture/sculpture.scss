@@ -1,0 +1,121 @@
+.sculpture--composition {
+  overflow: visible;
+  margin-bottom: 130px;
+  margin-left: -100px;
+  width: auto;
+  height: calc(100vh - 245px);
+  g {
+    /* transition: all 1.25s ease-in-out; */
+  }
+  .overall {
+    transform-origin: bottom;
+    transition: transform 1.25s;
+  }
+
+  @media (min-width: 1910px) {
+    margin-left: -250px;
+  }
+  @media (max-width: 1909px) {
+    margin-left: calc(-1340px / 4.5 - 100px);
+  }
+  @media (max-width: 1614px) {
+    margin-left: calc(-1340px / 6.5 - 100px);
+  }
+
+  @media (max-width: 1441px) {
+    margin-left: -280px;
+    margin-bottom: 100px;
+  }
+  @media (max-width: 1120px) {
+    margin-left: -100px;
+  }
+}
+
+.sculpture--hover {
+  bottom: 0;
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 33.3vw;
+  z-index: 10;
+
+  &__left {
+    left: 0;
+    transform: translateX(-100%);
+    @media (min-width: 1900px) {
+      transform: translateX(-90%);
+    }
+    @media (max-width: 1024px) {
+      transform: translateX(-50%);
+    }
+  }
+
+  &__right {
+    right: 0;
+    transform: translateX(100%);
+    @media (min-width: 1900px) {
+      transform: translateX(70%);
+    }
+    @media (max-width: 1024px) {
+      transform: translateX(50%);
+    }
+  }
+
+  &__centre {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.sculpture {
+  &.safari {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  &.firefox {
+    opacity: 0;
+    -moz-transform: scale(0.9);
+    -moz-transition: opacity 1s cubic-bezier(0.45, 0.05, 0.55, 0.95),
+      transform 1s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+
+    .grow-up {
+      -moz-transform: translate(0, -1100px);
+    }
+  }
+}
+
+.grow-up_next,
+.grow-up {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .sculpture--wrap {
+    display: flex;
+    align-items: flex-end;
+  }
+  .sculpture--composition {
+    margin-left: 0;
+    margin-bottom: -17px;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .sculpture--hover {
+    display: none;
+  }
+}
+
+@media (max-width: 650px) {
+  .sculpture {
+    display: none;
+  }
+  .sculpture--composition {
+    margin-bottom: 0;
+  }
+}
