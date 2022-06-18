@@ -13,6 +13,7 @@ import { febc } from './FEBC'
 import { pnp } from './PNP'
 const cases = [
   febc,
+  pnp,
   wma,
   wood,
   pledger,

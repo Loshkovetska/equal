@@ -52,7 +52,7 @@ Strategy / UX & UI / Graphic desgin</p> </div>
     </ul>`,
     description: `
       <div>
-      <div class="slide-wrap title"> <h1 class="slide-up wma-desk">MVP for Blockchain payment system</h1>
+      <div class="slide-wrap title"> <h1 class="slide-up wma-desk">MVP for Blockchain Web 3.0 Payments</h1>
       <h1 class="slide-up wma-mob">PNP</h1></div>
 
        <div class="parallax appear"> <img src=${pnp1} alt="" /></div>
@@ -89,183 +89,169 @@ Strategy / UX & UI / Graphic desgin</p> </div>
       </li>
     </ul>
        </div>
-<div class="slide-wrap slide-up"> <strong>This is the MVP for a banking mobile application that is planned to be launched in the UK. pingNpay is positioned as a youth application for quick transfers and payments, an application with a minimum commission and no need to upload your documents to verify your identity.
-We made a video case study of the process of creating mobile banking MVP. If you don't have time to read, then this format is perfect for you. <br/>   <br/> 
-
-As part of this project, we designed an interface for mobile banking, made a web application for the administrator's dashboard, developed a design for a Google Chrome plugin, and made a promotional website of the product for pNp users and investors. Below we will talk about creating an interface for mobile banking.</strong></div>
+<div class="slide-wrap slide-up"> <strong>This is the MVP for a global micropayments network to be launched initially in Europe. pingNpay is a payments network designed to make paying for small items both viable and easy to use, for little things online and in person, including being designed to serve web3.0 and metaverse commerce. Specifically designed for the next evolution of the internet, pingNpay makes it easier and cheaper to buy and sell online services both now and in the future.
+The video case study summarizes the process of creating the mobile payment MVP – and is perfect if you’re pushed for time.<br/>   <br/> 
+As part of this project, we designed wallet interfaces (mobile and web browsers), a web application (app) for the administrator's dashboard, and a promotional website for a wide range of pingNpay stakeholders including users, wallet providers, regulators and investors. Below we describe the brief, challenges and workflow of creating a mobile payments interface.</strong></div>
       </div>
       <div class="parallax appear"> <img src=${pnp2} alt="" /></div>
            <div>
      <div class="slide-wrap slide-up"><h2 class="slide-up">Challenges</h2></div>
      <div class="slide-wrap">
-     <p class="slide-up">Since the application is yet to enter the big market, we encountered some limitations that should have been foreseen in advance.
-     </p>
+     <p class="slide-up">To ensure that the application is suitable for mass use, we needed to anticipate and design for users’ needs from the beginning, these included:</p>
 <ul class="list slide-up">
-<li>Highlight the main priorities on the home screenwhich functionality is a priority and will be used more often;</li></br>
-<li>Payment limits20 pounds at maximum is the limit due to the use of the application without identity confirmation;</li></br>
-<li>Make the application futuristic without losing its simplicity and functionality;</li></br>
-<li>There is a flow in the application with requests for payment or refunds, it was important to properly develop these requests and their statuses so that the user could make a decision without unnecessary clicks and redundant notifications from the system.</li>
+<li>Highlight the functionality used most often on the home screen</li></br>
+<li>Work within a payment limit of ~$20, which is the maximum transaction value</li></br>
+<li>Ensure the app is visually appealing without losing its simplicity and functionality</li></br>
+<li>Develop a smooth flow for requests for payment and refunds, so users can execute transactions without unnecessary clicks and redundant notifications from the system.</li>
 </ul>
      </div>
      </div>
      <div class="parallax appear"> <img src=${pnp3} alt="" /></div>
       <div>
-        <div class="slide-wrap slide-up"><h2 class="slide-up">The workflow of the project</h2></div>
+        <div class="slide-wrap slide-up"><h2 class="slide-up">Project workflow</h2></div>
         <ol>
           <li class="slide-wrap slide-up">
             <h3>1. Getting to know our clients</h3>
             <p>
-            We discussed their presentation and expectations. At this stage we identified the main requirements regarding the future product, got acquainted with the development strategy.
+            We discussed their brief, requirements and expectations. At this stage we identified the main project requirements and development strategy.
             </p>
           </li>
           <li class="slide-wrap slide-up">
-            <h3>2. Conducting a research</h3>
+            <h3>2. Conducting research</h3>
             <div class="slide-wrap">
-            <p class="slide-up">To better understand the market, shape the mission and set clear goals, we conducted a research. It helped us formulate the key differences between PNP and their competitors:
-            </p>
+            <p class="slide-up">To better understand the market, shape the mission and set clear goals, we conducted research. It helped us formulate the key differences between pingNpay and its competitors as follows:</p>
        <ul class="list slide-up">
-       <li>Simple and fast registration does not require personal identification documents;</li>
-       <li>The maximum tax on all transactions in the app is 1%;</li>
-       <li>Functionality that allows you to assess the reliability of the recipient using reviews.</li>
+       <li>Quick and simple registration that does not require personal identification documents within regulatory limits for low-value payments</li>
+       <li>Viable fees for low-value payments</li>
+       <li>Functionality that allows users to assess the reliability of recipients using reviews.</li>
        </ul>
        <p>
        <li class="slide-wrap slide-up">
-            <h3>3. Working out the navigation map of the application</h3>
+            <h3>3. Devising the navigation map for the app</h3>
             <p>
-            Based on the data from our clients and the results obtained during the research, we started to create a navigation architecture of the application. This helped us organize the information and have a preliminary idea of the future application, as well as the scope of work. We discussed the vision for the app, got feedback and worked through the details together with the client to get additional clarification about constraints from the UK financial system. As a result, we got 7 main flows, on which we continued to work further.
-            </p>
+            Based on the data from our client and the results obtained during the research, we created a Navigation Map for the app. This helped us organize the information, devise a roadmap of future developments as well as scope the work.</br> </br>Through a series and iterations and deeper dive exploration sessions, we clarified the vision for the app, allowing us to work through the details together including additional clarification about UK financial regulatory constraints. As a result, we arrived at seven main flows, on which we continued to evolve.</p>
             <div> </br> </br></br></br>
             <div class="parallax appear"> <img src=${architecture} alt="" /></div>
-            <h3>4. Initial wireframing for priority pages</h3>
+            <h3>4. Initial wireframing for priority pages</h3>
             <p>
-            Based on the navigation map, we made some initial wireframes for the functionality of the top priority. We analyzed user behavior, compiled a list of features that were required, and displayed them on the home screen.</br> </br>
+            Based on the Navigation Map, initial wireframes were created, highlighting functions that users would perform most often. We analysed user behaviour, compiled a list of features that were required, and positioned them on the home screen.</br> </br>
 
-When logging into the application, users see basic information on their balance and an offer to deposit or withdraw funds.</br> </br>
+            When logging into the app, users have high-priority information to hand including information on their balance, deposit or withdraw functions and how to make or receive a payment.</br> </br>
 
-To make quick payments, we brought selected users to the home screen adn highlighted the functionality for the QR code with a strong emphasis.</br> </br>
+            To make quick payments, we brought users to the home screen, strongly highlighting the easiest payment methods - QR code functionality.</br> </br>
 
-Among the other important sections here, we also outlined payment and receipt of funds forming the main components of this application.
+            Among the other important sections here, we also outlined payment and receipt of funds, which form the main components of this app.
             </p>
             </div>
             <div class="parallax appear"> <img src=${wireframes} alt="" /></div>
              <div>       
           </li>
           <li class="slide-wrap slide-up">
-          <h3>5. Testing wireframes in-house and among the target audience of this application</h3>
+          <h3>5. Testing wireframes in-house and among the target audience</h3>
           <div class="slide-wrap">
-          <p class="slide-up">To evaluate the wireframes, we prepared specific tasks that ordinary users had to perform and a clickable prototype to test user behavior and the usability of information blocks.</br>
+          <p class="slide-up">To evaluate the wireframes, we prepared specific tasks that ordinary users had to perform and a clickable prototype to test user behaviour and the usability of information blocks.</br>
 
-          We watched user behavior during these tasks and noted for ourselves the points that still needed to be improved. Among them were the following ones:
-          </p>
+          We watched user behaviour during these tasks and noted for ourselves the points that still needed to be improved. Among them were the following:</p>
      <ul class="list slide-up">
-     <li>Thinking about clearer and simpler descriptions for the buttons and adding visual accents;</li>
+     <li>Thinking about clearer and simpler descriptions for the buttons and adding visual accents</li>
      <li>Bringing balance actions to the main screen.</li>
      </ul>
             <li class="slide-wrap slide-up">
             <h3>6. Studying feedback and defining the best option</h3>
             <p>
-            After testing, users additionally left feedback about app concepts, details that were left unclear, or things they really thought were relevant and important.</br>
-
-After studying the feedback from all users, we were not only able to choose the option that leads to the desired goal faster, but also identify users' preferences and expectations early on to improve our designs immediately.
-            </p>
+            After testing, users additionally left feedback about app concepts, details that were unclear, or things they really thought were relevant and important.</br>
+            After studying the feedback from all users, we were not only able to choose the options that led to the desired goal faster, but also identify users' preferences and expectations early on to improve our designs immediately.</p>
           <li class="slide-wrap slide-up">
-          <h3>7. Studying the preferences of the application's target audience</h3>
+          <h3>7. Studying the preferences of the app's target audience</h3>
           <div class="slide-wrap">
-          <p class="slide-up">Even at the stage of getting to know the client, we learned that the application has a priority for the younger generation (in particular millennials).</br>
-
-          So before creating concepts for the application, we studied the preferences of the target audience to UI design and highlighted the main tasks that it should solve. Happy to share the results of the study and draw our conclusions from it:
+          <p class="slide-up">Even at the stage of getting to know the client, we learned that young people, millennials in particular, were a key early adaptor audience for the app.</br>
+          So before creating concepts for the app, we studied the preferences of the target audience regarding UI design and highlighted the main tasks that it should solve. The main conclusions from the study were as follows:
           </p>
           </div></br> </br></br></br>
           <div class="parallax appear"> <img src=${pnp4} alt="" /></div>
            <div>       
      <ul class="list slide-up">
-     <li><h3>More modesty</h3>
-     Millennials are people with non-standard and flexible minds, living in a frantic rhythm and not imagining any other way of life, passing through a huge stream of information. They know how to do several things at the same time, think about numerous things at once, and are absolutely not inclined to sit in one place.</li>
-     <li><h3>High technology in priority</h3>
-Millennials are active Internet users (5-15 hours of surfing). They quickly make a decision about the convenience of the applications and do not spend time to understand the complex interface.</li>
-<li><h3>Digitalization</h3>
+     <li><h3>Digital natives</h3>
+     Millennials are people with non-standard and flexible minds, living life at a fast pace. They have never known a time pre-internet, are always online, and are used to consuming a huge, near-constant stream of information. They know how to do several things at the same time, think about numerous things at once, and are not inclined to sit in one place.</li>
+     <li><h3>Mobile-first</h3>
+     Millennials are active internet users (5-15 hours of surfing per day). They decide quickly about the convenience of apps and do not want to spend time understanding complex interfaces.</li>
+<li><h3>Usability</h3>
 For Millennials, great usability and a modern interface are also important. Because millennials are respectful of brands, they also pay close attention to the branding of all of the company's digital projects.</li>
      </ul>
           </div>
           <h3>UI design summary:</h3>
      <ul class="list slide-up">
-     <li>Creating clear, non-overloaded design, and intuitive interface;</li>
-     <li>Use of visual elements and color styles to differentiate from competitors;</li>
-     <li>Balance between current trends and long-term design for the app;</li>
-     <li>Making complicated things simple;</li>
-     <li>Leveraging emotional design techniques through interactions, user-friendly tips, and pop-ups;</li>
-     <li>Focusing on the needs of the target audience (millennials love the opportunity to be unique!).</li>
+     <li>Create a clear, non-overloaded design, and intuitive interface</li>
+     <li>Use of visual elements and colour styles to clarity and confidence</li>
+     <li>Balance current trends and long-term design for the app</li>
+     <li>Make complicated things simple</li>
+     <li>Leverage emotional design techniques through interactions, user-friendly tips, and pop-ups</li>
+     <li>Focus on the needs of the target audience (millennials love the opportunity to be unique!)</li>
      </ul>
      </br> </br></br></br>
           <div class="parallax appear"> <img src=${pnp5} alt="" /></div>
-          <h3>8. Defining the UI concept of the application</h3>
+          <h3>8. Defining the UI concept of the app</h3>
           <p>
-          Based on the data collected during the UI preferences study, we prepared a presentation with the concepts that best fit the requirements. After negotiation with the product owners, we have defined the one that best demonstrated the idea and emphasized the important functionality of the app.
-          </p>
+          Based on the data collected during the UI preferences study, we prepared a presentation with the concepts that best fit the requirements. After discussion with the client, we refined the one that best demonstrated the idea and emphasized the important functionality of the app.</p>
         <li class="slide-wrap slide-up">
         <h3>9. Continuing to design using the selected concept</h3>
         <p>
-        Afterwards, we moved on to designing the following pages without preparing wireframes in advance. It helped us immediately understand how it would look in the final product and saved time during both design and development processes, which is very important when working on an MVP.
-        </p>
+        Afterwards, we moved on to designing subsequent pages without preparing wireframes in advance. This helped us immediately understand the look of the final product and saved time during both the design and development processes, which is very important when working on an MVP.</p>
       </li>
       <li class="slide-wrap slide-up">
       <h3>10. Working on revisions and improvements</h3>
       <p>
-      After completing each flow, we discussed the work with clients, briefed them on possible atypical situations, considered options for improvement, and made revisions.
-      <strong><div>Constant communication with the client makes it possible to identify in the shortest possible time the nuances that need to be improved or foreseen.</div></strong>
-      </p>
-            <h3>11. Developing clear onboarding and page tips to level </br> out the complexities of the application</h3>
+      After completing each flow, we discussed the work with the client, briefed them on possible atypical situations, considered options for improvement, and made revisions.
+      <div>Constant communication with the client made it possible to identify the nuances that needed to be improved or anticipated in the shortest possible time.</div></p>
+            <h3>11. Developing clear onboarding and page tips to level out the complexities of the app</h3>
         <p>
-        Any new product that is just planning to enter the market must have features that will set it apart from others. It's important to identify the benefits early on and use that information to promote it.</br>
-On the app side, it's important to emphasize these features at the very beginning, so we've thought of interesting onboarding and tips on some pages of the app for the user experience.
-        </p>
+        Any new entrant to the market must-have features that will set it apart from others. It's important to identify the benefits early on and use that information to promote it.</br>
+        On the app side, it's important to emphasise these features at the very beginning, so we devised a stand-out onboarding flow and tips on some pages of the app to enhance the user experience.</p>
         </br> </br></br></br>
         <div class="parallax appear"> <img src=${pnp6} alt="" /></div>   
-                  <h3>12. Transferring the files to development</h3>
+                  <h3>12. Transferring the files to development</h3>
         <p>
-        After half of the application was ready, the development team joined us and began developing the finished flows. For convenience, we left necessary explanations and details about some pages in the layout.
-        </p>
+        After half of the app was ready, the development team joined us and began developing the finished flows. For convenience, we left necessary explanations and details about some pages in the layout.</p>
       <li class="slide-wrap slide-up">
-                  <h3>13. Interactive prototypes for all the flows</h3>
+                  <h3>13. Interactive prototypes for all the flows</h3>
         <p>
-        A prototype is necessary to make it easy to test and get a feel for how the final product will be used. Moreover, it certainly helped the developers understand all the interactions in the application.
-        </p>
+        A prototype is necessary to make it easy to test and get a feel for how the final product will be used. Moreover, it certainly helped the developers understand all the interactions in the app.</p>
       <li class="slide-wrap slide-up">
-                  <h3>14. Description of basic functionality and pages</h3>
+                  <h3>14. Description of basic functionality and pages</h3>
         <p>
         <div>       
         <ul class="list slide-up">
         <li><h3>Home page</h3>
-        The home page was created after testing the wireframes. To make a decision, we made 3 variants of the home page, worked out additional pages for the prototype, and sent it to a group of users for testing. After the feedback was received,, we determined the functionality of higher priority and importance.</li>
+        The home page was created after testing the wireframes. To make a final decision, we created three variants of the home page, worked out additional pages for the prototype, and sent it to a group of users for testing. After receiving feedback, we determined the functions of higher priority and importance.</li>
         <li><h3>Payment flow</h3>
-        We've put together on one page all the options which may help the user to make a payment. They can:choose the recipient from their list of contacts or favoritesenter the data for payment manuallyor use a QR code. QR code in this case has two options of use as well. Users can either scan the code or show their own one to pay in the store, for example.</li>
+        We've put together on one page all the options which may help the user to make a payment. They can choose the recipient from their list of contacts or favourites, enter the data for payment manually or use a QR code. There are two options for using QR codes, either users can either scan the code or show their own QR code to pay in store.</li>
         </br> </br></br></br>
         <div class="parallax appear"> <img src=${pnp7} alt="" /></div>     
    <li><h3>Flow of sending a payment request</h3>
-   To create a request for the receipt the user has several options with the QR code. Here we have provided an opportunity to create a dynamic code. It will allow you to immediately set the amount you plan to receive.</br></br>
+   To create a request for payment, the user has several options using QR codes. Here we have provided an opportunity to create a dynamic code. It allows users to set the amount they wish to receive.</br></br>
 
-   It can also be used by retailers who provide one service without changing the price, for example, scooter rentals. This allows you to control the amount you want to receive and limit the choice of payer.</br></br>
+   PingNpay is aimed at both consumers and retailers, facilitating fee mechanism for both person to person and person to business based payments, the UI deals with these complex items by making it simple for the user.</br></br>
    
-   Creating a static QR has wider application and can be used for any funds transfer. You can save the QR code as a JPEG, share it in a convenient messenger or just show it to another person for scanning. Besides the user can create a link to the request with the destination and the expected sum of money.</br></br>
+   Creating a static QR code has wider application and can be used for any funds transfer. Users can save the QR code as a JPEG, share it in a convenient messenger or just show it to another person for scanning. Additionally, the user can create a link to the request with the destination and the expected sum of money.</br></br>
    
-   Such choice of variants gives a person an opportunity to find the most convenient way for carrying out any transactions.</li>
+   Such a choice of variants gives users the opportunity to find the most convenient way to carry out any transactions.</li>
    </br> </br></br></br>
    <div class="parallax appear"> <img src=${pnp8} alt="" /></div>    
    <li><h3>Request status control</h3>
-   With the possibility to send a request for funds and refunds, a new task arose to display information about these requests in the most accurate and comprehensive way possible. We created several options for testing, among which we chose the most optimal one for this situation.</br></br>
+   With the ability to send a request for funds and refunds, a new task arose to display information about these requests in the most accurate and comprehensive way possible. We created several options for testing and chose the most optimal one for each situation.</br></br>
 
-We also developed statuses that would change dynamically as soon as a decision was made on a request. They may be pending, request paid, rejected. Requests have their own pending period and in cases when a decision should be made shortly - we are warning users with additional accents in the cards.</br>
+   We developed statuses that would change dynamically as soon as a decision was made on a request. They may be pending, request paid, rejected. Requests have their own pending period and in cases when a decision should be made quickly, we warn users with additional prompts.</br>
 
-Thus, we prevent the overload of notifications and do not confuse users with unnecessary information.</li>
+   Thus, we prevent users from being overloaded with notifications and confused by unnecessary information.</li>
         </ul>
              </div> 
       <div class="parallax appear"> <img src=${behance} alt="" /></div>
        <div>       
      <div class="slide-wrap slide-up"><h2 class="slide-up">Conclusion</h2></div>
 <div class="slide-wrap">
-      <strong class="slide-up">It took us 200 hours (23 days) to finish the project. During this time, we prepared 8 flows, the total number of screens - 180. For the MVP, we have worked out in detail the main functionality that users will use first and foremost. And, of course, we took into account all possible scenarios of use and behavior of the interface in different situations.</br>
+      <strong class="slide-up">Through rapid prototyping, regular concept testing and close client engagement we managed to design the MVP Mobile wallet in around five working weeks. During this time, we prepared eight flows, and a total of 180 screens. For the MVP, we worked out the main functionality that users will use first and foremost in detail. And, of course, we considered user behaviour in all possible scenarios.</br>
 
-      We're confident that this MVP has a huge chance of success among the users and we already have plans for further development of the project.  We believe in the products we create and go the extra mile to give our partners the best result.</strong>
+      We're confident that this MVP has a huge chance of success among the users and already have plans for further development of the project.  We believe in the products we create and go the extra mile to give our partners the best result.</strong>
 
 </div>
 `,
