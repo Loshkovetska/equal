@@ -37,11 +37,11 @@ Strategy / UX & UI / Graphic desgin</p> </div>
         <p>
         Web & Mobile App / Fintech</p> </div>
       </li>
-      <li  class="slide-wrap">
+      <!-- <li  class="slide-wrap">
       <div class="slide-up">  <h3>      Link to PNP video </h3>
         <a href="https://www.youtube.com/watch?v=umgHlCCrbNo">
         PingNPay - Fintech Mobile App</a> </div>
-      </li>
+      </li> -->
       <li  class="slide-wrap">
       <div class="slide-up">  <h3>CLIENT SAYS</h3>
         <p>«They’ve managed everything professionally.»</p>
@@ -75,11 +75,11 @@ Strategy / UX & UI / Graphic desgin</p> </div>
         <p>
         Web & Mobile App / Fintech</p> </div>
       </li>
-      <li  class="slide-wrap">
+      <!-- <li  class="slide-wrap">
       <div class="slide-up">  <h3>      Link to PNP video </h3>
         <a href="https://www.youtube.com/watch?v=umgHlCCrbNo">
         PingNPay - Fintech Mobile App</a> </div>
-      </li>
+      </li> -->
       <li  class="slide-wrap">
       <div class="slide-up">  <h3>CLIENT SAYS</h3>
         <p>«They’ve managed everything professionally.»</p>
@@ -91,6 +91,16 @@ Strategy / UX & UI / Graphic desgin</p> </div>
        </div>
 <div class="slide-wrap slide-up"> <strong>This is the MVP for a global micropayments network to be launched initially in Europe. pingNpay is a payments network designed to make paying for small items both viable and easy to use, for little things online and in person, including being designed to serve web3.0 and metaverse commerce. Specifically designed for the next evolution of the internet, pingNpay makes it easier and cheaper to buy and sell online services both now and in the future.
 The video case study summarizes the process of creating the mobile payment MVP – and is perfect if you’re pushed for time.<br/>   <br/> 
+<video
+          preload="true"
+          autoplay="true"
+          muted
+          loop
+          src="{https://www.youtube.com/watch?v=umgHlCCrbNo}"
+style="width: 100%;"
+        >
+          <source src="{video}" type="video/mp4" />
+        </video>
 As part of this project, we designed wallet interfaces (mobile and web browsers), a web application (app) for the administrator's dashboard, and a promotional website for a wide range of pingNpay stakeholders including users, wallet providers, regulators and investors. Below we describe the brief, challenges and workflow of creating a mobile payments interface.</strong></div>
       </div>
       <div class="parallax appear"> <img src=${pnp2} alt="" /></div>
