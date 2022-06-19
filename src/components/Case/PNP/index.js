@@ -96,10 +96,10 @@ The video case study summarizes the process of creating the mobile payment MVP â
           autoplay="true"
           muted
           loop
-          src="{https://www.youtube.com/watch?v=umgHlCCrbNo}"
+          src="https://www.youtube.com/watch?v=umgHlCCrbNo"
 style="width: 100%;"
         >
-          <source src="{video}" type="video/mp4" />
+          <source src="https://www.youtube.com/watch?v=umgHlCCrbNo" type="video/mp4" />
         </video>
 As part of this project, we designed wallet interfaces (mobile and web browsers), a web application (app) for the administrator's dashboard, and a promotional website for a wide range of pingNpay stakeholders including users, wallet providers, regulators and investors. Below we describe the brief, challenges and workflow of creating a mobile payments interface.</strong></div>
       </div>
