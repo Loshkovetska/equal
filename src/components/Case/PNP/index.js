@@ -8,6 +8,7 @@ import pnp5 from '../../../images/cases/pnp/image5.png'
 import pnp6 from '../../../images/cases/pnp/image6.png'
 import pnp7 from '../../../images/cases/pnp/image7.png'
 import pnp8 from '../../../images/cases/pnp/image8.png'
+import pnp9 from '../../../images/cases/pnp/image9.png'
 import architecture from '../../../images/cases/pnp/architecture.png'
 import behance from '../../../images/cases/pnp/behance.png'
 import wireframes from '../../../images/cases/pnp/wireframes.png'
@@ -96,8 +97,7 @@ The video case study summarizes the process of creating the mobile payment MVP â
 <div>
 <video
           preload="true"
-          autoplay="true"
-          muted
+          controls
           loop
           src="https://equal.design/videos/pnp_case.mp4"
 style="width: 100%;"
@@ -177,6 +177,7 @@ As part of this project, we designed wallet interfaces (mobile and web browsers)
             After testing, users additionally left feedback about app concepts, details that were unclear, or things they really thought were relevant and important.</br>
             After studying the feedback from all users, we were not only able to choose the options that led to the desired goal faster, but also identify users' preferences and expectations early on to improve our designs immediately.</p>
           <li class="slide-wrap slide-up">
+          <div class="parallax appear"> <img src=${pnp9} alt="" /></div>
           <h3>7. Studying the preferences of the app's target audience</h3>
           <div class="slide-wrap">
           <p class="slide-up">Even at the stage of getting to know the client, we learned that young people, millennials in particular, were a key early adaptor audience for the app.</br>
