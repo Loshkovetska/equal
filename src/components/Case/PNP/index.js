@@ -93,8 +93,7 @@ Strategy / UX & UI / Graphic desgin</p> </div>
 <div class="slide-wrap slide-up"> <strong>This is the MVP for a global micropayments network to be launched initially in Europe. pingNpay is a payments network designed to make paying for small items both viable and easy to use, for little things online and in person, including being designed to serve web3.0 and metaverse commerce. Specifically designed for the next evolution of the internet, pingNpay makes it easier and cheaper to buy and sell online services both now and in the future.
 The video case study summarizes the process of creating the mobile payment MVP – and is perfect if you’re pushed for time.<br/>   <br/> 
 </div>
-</br>
-<div>
+<!-- <div>
 <video
           preload="true"
           controls
@@ -103,8 +102,8 @@ The video case study summarizes the process of creating the mobile payment MVP �
 style="width: 100%;"
         >
           <source src="https://equal.design/videos/pnp_case.mp4" type="video/mp4" />
-        </video>
-</div>
+        </video> 
+</div> -->
 <div>
 As part of this project, we designed wallet interfaces (mobile and web browsers), a web application (app) for the administrator's dashboard, and a promotional website for a wide range of pingNpay stakeholders including users, wallet providers, regulators and investors. Below we describe the brief, challenges and workflow of creating a mobile payments interface.</strong></div>
       </div>
