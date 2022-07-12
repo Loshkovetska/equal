@@ -19,9 +19,9 @@ const Header = observer(({ classlist = '' }: { classlist?: string }) => {
     const headerFix = document.querySelector('.header-fixed')
 
     if (!headerFix) {
-      ;(header.current as HTMLElement).style.opacity = '1'
-      ;(header.current as HTMLElement).style.transitionDuration = '0.3s'
-      ;(header.current as HTMLElement).style.transitionDelay = '1s'
+      ; (header.current as HTMLElement).style.opacity = '1'
+        ; (header.current as HTMLElement).style.transitionDuration = '0.3s'
+        ; (header.current as HTMLElement).style.transitionDelay = '1s'
     }
   }, [])
 
@@ -33,10 +33,10 @@ const Header = observer(({ classlist = '' }: { classlist?: string }) => {
         const header = document.querySelector('.header-fixed')
         if (header && !isTouch) {
           if (isSafariDesktop || is_firefox) {
-            ;(header as any).style.opacity = '1'
-            ;(document.querySelector(
-              '.header-fixed .header__logo',
-            ) as any).style.transfrom = 'translate(0, 0)'
+            ; (header as any).style.opacity = '1'
+              ; (document.querySelector(
+                '.header-fixed .header__logo',
+              ) as any).style.transfrom = 'translate(0, 0)'
 
             gsap.from(
               [
@@ -51,7 +51,7 @@ const Header = observer(({ classlist = '' }: { classlist?: string }) => {
               },
             )
           } else {
-            ;(header as any).style.opacity = '1'
+            ; (header as any).style.opacity = '1'
 
             gsap.to('.header-fixed .header__logo', {
               scrollTrigger: {
@@ -72,17 +72,17 @@ const Header = observer(({ classlist = '' }: { classlist?: string }) => {
                 duration: 0.6,
               },
             )
-            ;(document.querySelector(
-              '.header-fixed .btn-magnet-wrap',
-            ) as any).style.transform = 'translate(0, 0)'
+              ; (document.querySelector(
+                '.header-fixed .btn-magnet-wrap',
+              ) as any).style.transform = 'translate(0, 0)'
           }
         }
 
         if (header && isTouch) {
-          ;(header as any).style.opacity = '1'
-          ;(document.querySelector(
-            '.header .hamburger',
-          ) as any).style.marginTop = '0px'
+          ; (header as any).style.opacity = '1'
+            ; (document.querySelector(
+              '.header .hamburger',
+            ) as any).style.marginTop = '0px'
           gsap.to('.header-fixed .btn-magnet-wrap', {
             scrollTrigger: {
               trigger: '.header-fixed .btn-magnet-wrap',
@@ -128,24 +128,24 @@ const Header = observer(({ classlist = '' }: { classlist?: string }) => {
     if (GlobalState.locoScroll) {
       const headerRect = header?.getBoundingClientRect()
 
-      ;(GlobalState.locoScroll as any).on('scroll', (args: any) => {
-        console.log(args.direction)
-        if (args.scroll.y > headerRect.bottom) {
-          if (args.direction == 'up') {
-            document.querySelector('header.showup')!.classList.add('display')
+        ; (GlobalState.locoScroll as any).on('scroll', (args: any) => {
+          console.log(args.direction)
+          if (args.scroll.y > headerRect.bottom) {
+            if (args.direction == 'up') {
+              document.querySelector('header.showup')!.classList.add('display')
+            } else {
+              if (GlobalState.menuIsOpen) {
+                changeMenuState()
+              }
+              document.querySelector('header.showup')!.classList.remove('display')
+            }
           } else {
             if (GlobalState.menuIsOpen) {
               changeMenuState()
             }
             document.querySelector('header.showup')!.classList.remove('display')
           }
-        } else {
-          if (GlobalState.menuIsOpen) {
-            changeMenuState()
-          }
-          document.querySelector('header.showup')!.classList.remove('display')
-        }
-      })
+        })
     }
   }, [GlobalState.locoScroll])
 
@@ -171,6 +171,12 @@ const Header = observer(({ classlist = '' }: { classlist?: string }) => {
         <div className="header__btns">
           <div className={classNames('slide-wrap', 'slide-wrap--header')}>
             <div className="slide-up">
+              <SplitText
+                classList="link-rotate"
+                text="blog"
+                path="/blogs"
+                target={false}
+              />
               <SplitText
                 classList="link-rotate"
                 text="our cases"

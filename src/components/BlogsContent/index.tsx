@@ -9,43 +9,53 @@ import PowerTitle from '../common/PowerTitle'
 import ParallaxCase from '../ParallaxItem'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
-import './cases.scss'
+import './blogs.scss'
 import { observer } from 'mobx-react'
 import SplitText from '../common/SplitText'
 import { Animated } from 'react-animated-css'
 
 import 'animate.css/animate.css'
 
-const CasesContent = observer(() => {
+const BlogsContent = observer(() => {
   const [casesData, setState] = useState<any>(null)
   const [caseDt, set] = useState<any>(cases)
   const [show, setShow] = useState(false)
   const { pathname } = useLocation()
   const menuItems = [
     {
-      title: 'all projects',
-      link: '/cases',
-      tab: 'cases',
+      title: 'all articles',
+      link: '/blogs',
+      tab: 'all articles',
     },
     {
-      title: 'web apps',
-      link: '/cases/web-app',
+      title: 'web app',
+      link: '/blogs/web-app',
       tab: 'web app',
     },
     {
-      title: 'mobile apps',
-      link: '/cases/mobile-app',
+      title: 'mobile app',
+      link: '/blogs/mobile-app',
       tab: 'mobile app',
     },
     {
-      title: 'websites',
-      link: '/cases/website',
+      title: 'website',
+      link: '/blogs/website',
       tab: 'website',
     },
     {
-      title: 'VR&AR',
-      link: '/cases/VR&AR',
-      tab: 'VR&AR',
+      title: 'startups',
+      link: '/blogs/startups',
+      tab: 'startups',
+    },
+    {
+      title: 'blockchain',
+      link: '/blogs/blockchain',
+      tab: 'blockchain',
+    },
+    {
+      title: 'healthcar',
+      link: '/blogs/healthcar',
+      tab: 'healthcar',
     },
   ]
 
@@ -82,12 +92,12 @@ const CasesContent = observer(() => {
 
   useEffect(() => {
     setTimeout(() => {
-      const title = document.querySelectorAll('.selected-cases__title-text')
-      if (!title || !document.querySelector('.cases-page')) return
+      const title = document.querySelectorAll('.selected-blogs__title-text')
+      if (!title || !document.querySelector('.blogs-page')) return
       var tl = gsap.timeline({
         ease: 'power2',
         scrollTrigger: {
-          trigger: `.cases-page`,
+          trigger: `.blogs-page`,
           start: isTouch ? 'top bottom' : 'top center',
           toggleActions: 'play none none none',
         },
@@ -99,38 +109,32 @@ const CasesContent = observer(() => {
         stagger: 0.2,
       })
 
-      const casePage = document.querySelector('.cases-page')
+      const casePage = document.querySelector('.blogs-page')
       if (casePage) {
         document.body.style.background = 'transparent'
       }
     })
   }, [])
 
+
   return (
-    <section className="cases-page">
-      <div
-        className="cases-page__back"
-      // onClick={() => (window.location.href = '/')}
-      >
-        <SplitText text={`< Back`} path="/" classList="" target />
-      </div>
+    <section className="blogs-page">
+
       <PowerTitle
         count={caseDt ? caseDt.length : 0}
-        section="cases-page"
+        section="blogs-page"
         classList=""
       />
-      <div className="cases-page__menu cases-menu">
+      <div className="cases-page__menu blogs-menu">
         {menuItems.map((m, idx) => (
-          <Link
-            className={classNames(
-              'cases-menu__item',
-              pathname.split('/').pop() == m.link.split('/').pop() && 'active',
-            )}
-            to={`${m.link}`}
+          <SplitText
+            classList={`blogs-menu__item ${pathname.split('/').pop() == m.link.split('/').pop() && 'active'}`}
+            text={m.title}
+            path={m.link}
+            target={false}
             key={idx}
-          >
-            {m.title}
-          </Link>
+          />
+
         ))}
       </div>
       <div className="selected-cases__list cases-list">
@@ -155,8 +159,8 @@ const CasesContent = observer(() => {
             </div>
           ))}
       </div>
-    </section>
+    </section >
   )
 })
 
-export default CasesContent
+export default BlogsContent

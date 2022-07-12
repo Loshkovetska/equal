@@ -69,6 +69,7 @@
       display: none;
     }
   }
+
   .btn-magnet-wrap {
     padding: 25px;
   }
@@ -100,7 +101,7 @@
       background: transparent;
     }
     .btn-header::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
@@ -118,7 +119,7 @@
       transition: all 0.3s ease-in-out;
     }
     .btn-header::after {
-      content: '';
+      content: "";
       position: absolute;
       top: -50%;
       left: -25%;
@@ -191,4 +192,11 @@ header.showup {
       opacity: 1;
     }
   }
+}
+
+.slide-up {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  column-gap: 5vw;
 }

@@ -1,14 +1,18 @@
 .btn--split {
   overflow: hidden;
   display: inline-block;
-
+  user-select: none;
   .word {
     position: relative;
     .char {
       display: inline-block;
       transform: translateY(100%);
-      transition: all 1s cubic-bezier(0, 0.97, 0.43, 1)
-        calc(200ms * var(--char-index) / var(--char-total));
+      transition: all 1s cubic-bezier(0, 0.97, 0.43, 1) calc(200ms * var(--char-index) / var(--char-total));
+    }
+    .activeChar {
+      display: inline-block;
+      transform: translateY(100%);
+      transition: all 1s cubic-bezier(0, 0.97, 0.43, 1) calc(200ms * var(--char-index) / var(--char-total));
     }
     .full-text {
       position: absolute;
@@ -21,8 +25,10 @@
   &:hover .word .char {
     color: #2b2727;
     transform: translateY(0);
-    transition: all 1s cubic-bezier(0, 0.97, 0.43, 1)
-      calc(200ms * var(--char-index) / var(--char-total));
+    transition: all 1s cubic-bezier(0, 0.97, 0.43, 1) calc(200ms * var(--char-index) / var(--char-total));
+  }
+  &:hover .word .active {
+    color: white;
   }
 
   &:hover .word .full-text {

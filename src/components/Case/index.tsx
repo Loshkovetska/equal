@@ -20,7 +20,7 @@ const Case = () => {
         parallax = section?.querySelectorAll('.parallax img')
 
       if (!section) return
-      ;(section as HTMLElement).style.opacity = '1'
+        ; (section as HTMLElement).style.opacity = '1'
       slideUp?.forEach((item) => {
         gsap.from(item, {
           scrollTrigger: {
@@ -77,12 +77,12 @@ const Case = () => {
     const charsCont = (l as HTMLElement).querySelectorAll('.char')
     wordsCont.forEach((c, ind) => {
       if (c.classList.contains('word')) {
-        ;(c as HTMLElement).style.setProperty('--word-index', `${ind}`)
+        ; (c as HTMLElement).style.setProperty('--word-index', `${ind}`)
       }
     })
     charsCont.forEach((c, ind) => {
       if (c.classList.contains('char')) {
-        ;(c as HTMLElement).style.setProperty('--char-index', `${ind}`)
+        ; (c as HTMLElement).style.setProperty('--char-index', `${ind}`)
       }
     })
   }
@@ -96,16 +96,16 @@ const Case = () => {
           l.classList.add('btn--split')
           l.classList.add('animated')
           l.classList.add('case-link')
-          ;(l as any).style.setProperty(
-            '--word-total',
-            `${content.split(' ').length}`,
-          )
+            ; (l as any).style.setProperty(
+              '--word-total',
+              `${content.split(' ').length}`,
+            )
           const chars = content.split('')
           const res = []
           chars.forEach((c: any) => {
             if (c != ' ') res.push(c)
           })
-          ;(l as HTMLElement).style.setProperty('--char-total', `${res.length}`)
+            ; (l as HTMLElement).style.setProperty('--char-total', `${res.length}`)
           let html = ''
           content.split(' ').forEach((w: any, ind: number) => {
             let middle = ``

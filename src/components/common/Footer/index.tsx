@@ -111,8 +111,8 @@ const Footer = observer(() => {
                 trigger: footer.current,
                 start:
                   window.innerHeight / 2 + 50 >
-                  (document.querySelector('.footer') as HTMLElement)
-                    ?.offsetHeight
+                    (document.querySelector('.footer') as HTMLElement)
+                      ?.offsetHeight
                     ? 'top bottom'
                     : 'top center',
                 toggleActions: 'play none none none',
@@ -165,7 +165,7 @@ const Footer = observer(() => {
             const title = document.querySelectorAll('.footer__right-text')
 
             title.forEach((t) => {
-              ;(t as any).style.opacity = '1'
+              ; (t as any).style.opacity = '1'
             })
           }
         })
@@ -175,7 +175,7 @@ const Footer = observer(() => {
         pathname.split('/').pop() !== 'text-us' &&
         pathname.split('/').pop() !== 'thanks'
       ) {
-        ;(footer.current as Element).classList.add('safari')
+        ; (footer.current as Element).classList.add('safari')
         return
       }
     }
@@ -189,9 +189,9 @@ const Footer = observer(() => {
       ) {
         const elems = document.querySelectorAll('.footer *')
         elems.forEach((e) => {
-          ;(e as any).style.opacity = '1'
-          ;(e as any).style.transitionDuration = '0.3s'
-          ;(e as any).style.transitionProperty = 'opacity'
+          ; (e as any).style.opacity = '1'
+            ; (e as any).style.transitionDuration = '0.3s'
+            ; (e as any).style.transitionProperty = 'opacity'
         })
         return
       }
@@ -208,13 +208,13 @@ const Footer = observer(() => {
         document.body.classList.add('dark')
         const elems = document.querySelectorAll('.footer *')
         elems.forEach((e) => {
-          ;(e as any).style.opacity = '1'
-          ;(e as any).style.transitionDuration = '0.3s'
-          ;(e as any).style.transitionProperty = 'opacity'
+          ; (e as any).style.opacity = '1'
+            ; (e as any).style.transitionDuration = '0.3s'
+            ; (e as any).style.transitionProperty = 'opacity'
         })
         setTimeout(() => {
           if (document.querySelector('.contact-form__btn') as any) {
-            ;(document.querySelector(
+            ; (document.querySelector(
               '.contact-form__btn',
             ) as any)!.style.transform = 'translate(0,0)'
           }
@@ -241,13 +241,13 @@ const Footer = observer(() => {
               args.scroll.y >=
               (footer.current as HTMLElement).offsetTop - 200
             ) {
-              ;(document.body as any).style.background = '#2B2727'
-              ;(prev as any).style.opacity = 0
+              ; (document.body as any).style.background = '#2B2727'
+                ; (prev as any).style.opacity = 0
 
               if (!flag.current) {
                 Array.from(elems).forEach((e, ind) => {
-                  ;(e as any).style.opacity = 1
-                  ;(e as any).style.transitionDelay = `${0.2}s`
+                  ; (e as any).style.opacity = 1
+                    ; (e as any).style.transitionDelay = `${0.2}s`
                 })
                 titles &&
                   titles.forEach((t: HTMLElement, id: number) => {
@@ -255,12 +255,12 @@ const Footer = observer(() => {
                     t.style.transform = 'translate(0,0%)'
                   })
                 Array.from(slides).forEach((e, ind) => {
-                  ;(e as any).style.transitionDuration = '0.5s'
-                  ;(e as any).style.transitionProperty = 'transform'
-                  ;(e as any).style.transform = 'translate(0%,0%)'
-                  ;(e as any).style.transitionDelay = `${0 + 0.2 * ind}s`
-                  ;(e as any).style.transitionTimingFunction =
-                    'cubic-bezier(0.45, 0.05, 0.55, 0.95);'
+                  ; (e as any).style.transitionDuration = '0.5s'
+                    ; (e as any).style.transitionProperty = 'transform'
+                    ; (e as any).style.transform = 'translate(0%,0%)'
+                    ; (e as any).style.transitionDelay = `${0 + 0.2 * ind}s`
+                    ; (e as any).style.transitionTimingFunction =
+                      'cubic-bezier(0.45, 0.05, 0.55, 0.95);'
                 })
                 flag.current = true
               }
@@ -276,8 +276,8 @@ const Footer = observer(() => {
                 arrow.classList.add('animated')
               }
             } else {
-              ;(document.body as any).style.background = 'transparent'
-              ;(prev as any).style.opacity = 1
+              ; (document.body as any).style.background = 'transparent'
+                ; (prev as any).style.opacity = 1
               if (btnMess) btnMess.style.boxShadow = 'inset 0 0 0 2px #fff'
               if (!arrow.classList.contains('animated')) {
                 arrow.style.transform = 'translateX(-120%)'

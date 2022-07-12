@@ -28,25 +28,18 @@ const Navigation = observer(() => {
         <div className="navigation__list">
           {menuItems.map((m, ind) => (
             <>
-            <Link
-              className={classNames(
-                'navigation__item',
-               ( m.link == pathname) && 'active',
-              )}
-              to={m.link}
-              key={ind}
-              onClick={() => changeMenuState()}
-            >
-              {ind != 2 ? (
-                m.title
-              ) : (
-                <>
-                  
-                  {m.title}{' '}
-                  <span className="navigation__item-text">(coming soon)</span>
-                </>
-              )}
-            </Link></>
+              <Link
+                className={classNames(
+                  'navigation__item',
+                  (m.link == pathname) && 'active',
+                )}
+                to={m.link}
+                key={ind}
+                onClick={() => changeMenuState()}
+              >
+                {m.title}
+
+              </Link></>
           ))}
         </div>
         <button

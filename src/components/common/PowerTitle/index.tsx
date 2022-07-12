@@ -13,12 +13,14 @@ const PowerTitle = ({
   classList: string
 }) => {
   const titleSlideUp = useRef<any>(Array())
+
+  const isCasesPage = section === 'cases-page' ? 'cases-page' : 'blogs-page'
   useEffect(() => {
     setTimeout(() => {
       if (
         !document.querySelector(`.${section}`) ||
         !titleSlideUp.current ||
-        section == 'cases-page'
+        section == isCasesPage
       )
         return
       var tl = gsap.timeline({
@@ -38,7 +40,7 @@ const PowerTitle = ({
   }, [])
   return (
     <>
-      {section == 'selected-cases' || section == 'cases-page' ? (
+      {section != 'blogs-page' && section == 'selected-cases' || section == 'cases-page' ? (
         <div className="selected-cases__title">
           <div className="selected-cases__title-cont">
             <div
@@ -62,7 +64,7 @@ const PowerTitle = ({
             </div>
           </div>
         </div>
-      ) : section == 'footer' ? (
+      ) : (section != 'blogs-page' && section == 'footer') ? (
         <div className="footer__right-title">
           <div className="footer__right-cont">
             <div
@@ -85,7 +87,7 @@ const PowerTitle = ({
             </div>
           </div>
         </div>
-      ) : (
+      ) : section != 'blogs-page' ? (
         <div className={classNames('selected-cases__title', classList)}>
           <div className="selected-cases__title-cont">
             <div
@@ -118,7 +120,31 @@ const PowerTitle = ({
             </div>
           </div>
         </div>
-      )}
+      ) : <div className="selected-blogs__title">
+        <div className="selected-blogs__title-cont">
+          <div
+            className="selected-blogs__title-text"
+            ref={(el) =>
+              titleSlideUp.current && titleSlideUp.current.push(el)
+            }
+          >
+            THOUGHTS
+          </div>
+        </div>
+        <div className="selected-blogs__title-cont">
+          <div
+            className="selected-blogs__title-text"
+            ref={(el) =>
+              titleSlideUp.current && titleSlideUp.current.push(el)
+            }
+          >
+            & IDEAS
+          </div>
+        </div>
+      </div>
+
+
+      }
     </>
   )
 }

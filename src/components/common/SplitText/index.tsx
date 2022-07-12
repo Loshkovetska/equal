@@ -19,7 +19,7 @@ const SplitText = ({
 
   useEffect(() => {
     if (splitTextContainer.current) {
-      ;(splitTextContainer.current as HTMLElement).style.setProperty(
+      ; (splitTextContainer.current as HTMLElement).style.setProperty(
         '--word-total',
         `${text.split(' ').length}`,
       )
@@ -29,10 +29,10 @@ const SplitText = ({
       chars.forEach((c) => {
         if (c != ' ') res.push(c)
       })
-      ;(splitTextContainer.current as HTMLElement).style.setProperty(
-        '--char-total',
-        `${res.length}`,
-      )
+        ; (splitTextContainer.current as HTMLElement).style.setProperty(
+          '--char-total',
+          `${res.length}`,
+        )
 
       const wordsCont = Array.from(
         (splitTextContainer.current as Element).children,
@@ -42,16 +42,19 @@ const SplitText = ({
       )
       wordsCont.forEach((c, ind) => {
         if (c.classList.contains('word')) {
-          ;(c as HTMLElement).style.setProperty('--word-index', `${ind}`)
+          ; (c as HTMLElement).style.setProperty('--word-index', `${ind}`)
         }
       })
       charsCont.forEach((c, ind) => {
         if (c.classList.contains('char')) {
-          ;(c as HTMLElement).style.setProperty('--char-index', `${ind}`)
+          ; (c as HTMLElement).style.setProperty('--char-index', `${ind}`)
         }
       })
     }
   }, [])
+  const splitClassList = classList.split(' ')
+  const isActiveCharCode = splitClassList[splitClassList.length - 1] === 'active' && 'active'
+
   return (
     <Link
       className={classNames('btn--split', classList)}
@@ -67,7 +70,7 @@ const SplitText = ({
         <Fragment key={ind}>
           <span className={classNames('word')} data-word={w}>
             {w.split('').map((s, idx) => (
-              <span className="char" key={idx} data-char={s}>
+              <span className={`char ${isActiveCharCode}`} key={idx} data-char={s}>
                 {s}
               </span>
             ))}
