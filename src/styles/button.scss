@@ -81,18 +81,6 @@
   }
 }
 
-.btn-blog {
-  width: 117px;
-  min-width: 117px;
-  height: 117px;
-  margin: 0 auto;
-  background: #e1f23a;
-
-  &:hover {
-    box-shadow: inset 0 0 0 2px #e1f23a;
-    background: 0 0;
-  }
-}
 @media (max-width: 650px) {
   .btn-magnet-wrap .btn-primary {
     width: 100%;
@@ -108,5 +96,19 @@
     width: 100%;
     max-width: 100%;
     min-width: 100%;
+  }
+}
+
+.btn-blog {
+  width: 117px !important;
+  min-width: 117px !important;
+  max-width: 117px !important;
+  height: 117px !important;
+  margin: 0 auto;
+  background: #e1f23a;
+
+  &:hover {
+    box-shadow: inset 0 0 0 2px #e1f23a;
+    background: 0 0;
   }
 }

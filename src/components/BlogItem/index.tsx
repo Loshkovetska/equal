@@ -83,7 +83,9 @@ const BlogItem = observer(({ item }: { item: any }) => {
 
       <div className="blog-item__info">
         <div className="blog-item__title">{item.title}</div>
-        <div className="blog-item__type">{item.types.join(' / ')}</div>
+        <div className="blog-item__type">{item.types.join(' / ')}  <div className="blog-item_read-time_mobile">
+          {item.readTime} min read
+        </div></div>
       </div>
 
       <div className='item__img'>

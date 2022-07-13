@@ -1,17 +1,24 @@
 @font-face {
-  font-family: 'AeonikTrial';
-  src: url('../fonts/AeonikTRIAL-Regular.otf');
-  src: local('AeonikTRIAL Regular'), local('AeonikTRIAL-Regular'),
-    url('../fonts/AeonikTRIAL-Regular.otf') format('opentype');
+  font-family: "AeonikTrial";
+  src: url("../fonts/AeonikTRIAL-Regular.otf");
+  src: local("AeonikTRIAL Regular"), local("AeonikTRIAL-Regular"),
+    url("../fonts/AeonikTRIAL-Regular.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'AeonikTrial';
-  src: url('../fonts/AeonikTRIAL-Bold.otf');
-  src: local('AeonikTRIAL Bold'), local('AeonikTRIAL-Bold'),
-    url('../fonts/AeonikTRIAL-Bold.otf') format('opentype');
+  font-family: "AeonikTrialMedium";
+  src: url("../fonts/Aeonik-Medium.otf");
+  src: local("AeonikTRIAL Medium"), local("AeonikTRIAL-Medium"), url("../fonts/Aeonik-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "AeonikTrial";
+  src: url("../fonts/AeonikTRIAL-Bold.otf");
+  src: local("AeonikTRIAL Bold"), local("AeonikTRIAL-Bold"), url("../fonts/AeonikTRIAL-Bold.otf") format("opentype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -21,7 +28,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'AeonikTrial', sans-serif;
+  font-family: "AeonikTrial", sans-serif;
   text-decoration: none;
 }
 body {

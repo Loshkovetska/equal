@@ -4,6 +4,7 @@
   user-select: none;
   .word {
     position: relative;
+    white-space: nowrap;
     .char {
       display: inline-block;
       transform: translateY(100%);

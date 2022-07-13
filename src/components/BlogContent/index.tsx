@@ -53,9 +53,9 @@ const BlogContent = observer(() => {
       tab: 'blockchain',
     },
     {
-      title: 'healthcar',
-      link: '/blog/healthcar',
-      tab: 'healthcar',
+      title: 'healthcare',
+      link: '/blog/healthcare',
+      tab: 'healthcare',
     },
   ]
 
@@ -118,51 +118,58 @@ const BlogContent = observer(() => {
 
 
   return (
-    <section className="blog-page">
-      <PowerTitle
-        count={caseDt ? caseDt.length : 0}
-        section="blog-page"
-        classList=""
-      />
-      <div className="cases-page__menu blog-menu">
-        {menuItems.map((m, idx) => {
-          return <SplitText
-            classList={`blog-menu__item ${pathname.split('/').pop() == m.link.split('/').pop() && 'active'}`}
-            text={`${m.title}`}
-            path={m.link}
-            target={false}
-            key={idx}
-          />
-        })}
-      </div>
-      <div className="blog-list">
-        {casesData &&
-          casesData.map((c: any, idx: number) => (
-            <div className="blog-item ">
-              <Animated
-                animationIn="fadeInUp"
-                animationOut="fadeIn"
-                animationInDuration={1500}
-                animationOutDuration={1500}
-                isVisible={true}
-                key={idx}
-                style={{ width: '100%' }}
-              >
-                {' '}
-                <BlogItem item={c} />
+    <>
+      <section className="blog-page">
+        <PowerTitle
+          count={caseDt ? caseDt.length : 0}
+          section="blog-page"
+          classList=""
+        />
+      </section >
 
-                {' '}
-              </Animated>
-            </div>
-          ))}
+      <div className="blog-menu">
+        <div className="blog-menu__block">
+          {menuItems.map((m, idx) => {
+            return <SplitText
+              classList={`blog-menu__item ${pathname.split('/').pop() == m.link.split('/').pop() && 'active'}`}
+              text={`${m.title} [0]`}
+              path={m.link}
+              target={false}
+              key={idx}
+            />
+          })}
+        </div>
       </div>
-      <MagnetButton
-        path="/blog"
-        text="Show more"
-        classList="btn-primary btn-blog"
-        wrapperClass="appear appear--home"
-      />
-    </section >
+      <section className="blog-page">
+
+        <div className="blog-list">
+          {casesData &&
+            casesData.map((c: any, idx: number) => (
+              <div className="blog-item ">
+                <Animated
+                  animationIn="fadeInUp"
+                  animationOut="fadeIn"
+                  animationInDuration={1500}
+                  animationOutDuration={1500}
+                  isVisible={true}
+                  key={idx}
+                  style={{ width: '100%' }}
+                >
+                  {' '}
+                  <BlogItem item={c} />
+                  {' '}
+                </Animated>
+              </div>
+            ))}
+        </div>
+        <MagnetButton
+          path="/blog"
+          text="Show more"
+          classList="btn-primary btn-blog"
+          wrapperClass="appear appear--home"
+        />
+      </section >
+    </>
   )
 })
 
