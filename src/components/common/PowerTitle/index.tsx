@@ -14,7 +14,7 @@ const PowerTitle = ({
 }) => {
   const titleSlideUp = useRef<any>(Array())
 
-  const isCasesPage = section === 'cases-page' ? 'cases-page' : 'blogs-page'
+  const isCasesPage = section === 'cases-page' ? 'cases-page' : 'blog-page'
   useEffect(() => {
     setTimeout(() => {
       if (
@@ -40,7 +40,7 @@ const PowerTitle = ({
   }, [])
   return (
     <>
-      {section != 'blogs-page' && section == 'selected-cases' || section == 'cases-page' ? (
+      {section != 'blog-page' && section == 'selected-cases' || section == 'cases-page' ? (
         <div className="selected-cases__title">
           <div className="selected-cases__title-cont">
             <div
@@ -64,7 +64,7 @@ const PowerTitle = ({
             </div>
           </div>
         </div>
-      ) : (section != 'blogs-page' && section == 'footer') ? (
+      ) : (section != 'blog-page' && section == 'footer') ? (
         <div className="footer__right-title">
           <div className="footer__right-cont">
             <div
@@ -87,7 +87,7 @@ const PowerTitle = ({
             </div>
           </div>
         </div>
-      ) : section != 'blogs-page' ? (
+      ) : section != 'blog-page' ? (
         <div className={classNames('selected-cases__title', classList)}>
           <div className="selected-cases__title-cont">
             <div
@@ -120,10 +120,10 @@ const PowerTitle = ({
             </div>
           </div>
         </div>
-      ) : <div className="selected-blogs__title">
-        <div className="selected-blogs__title-cont">
+      ) : <div className="selected-blog__title">
+        <div className="selected-blog__title-cont">
           <div
-            className="selected-blogs__title-text"
+            className="selected-blog__title-text"
             ref={(el) =>
               titleSlideUp.current && titleSlideUp.current.push(el)
             }
@@ -131,9 +131,9 @@ const PowerTitle = ({
             THOUGHTS
           </div>
         </div>
-        <div className="selected-blogs__title-cont">
+        <div className="selected-blog__title-cont">
           <div
-            className="selected-blogs__title-text"
+            className="selected-blog__title-text"
             ref={(el) =>
               titleSlideUp.current && titleSlideUp.current.push(el)
             }

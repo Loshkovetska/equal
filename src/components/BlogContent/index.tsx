@@ -3,58 +3,58 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { isTouch } from '../../mocks/info'
 import GlobalState from '../../stores/GlobalState'
-import cases from '../Case/cases'
+import blog from '../BlogArticle/blog'
 import MagnetButton from '../common/MagnetButton'
 import PowerTitle from '../common/PowerTitle'
-import ParallaxCase from '../ParallaxItem'
+import BlogItem from '../BlogItem'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
-import './blogs.scss'
+import './blog.scss'
 import { observer } from 'mobx-react'
 import SplitText from '../common/SplitText'
 import { Animated } from 'react-animated-css'
 
 import 'animate.css/animate.css'
 
-const BlogsContent = observer(() => {
+const BlogContent = observer(() => {
   const [casesData, setState] = useState<any>(null)
-  const [caseDt, set] = useState<any>(cases)
+  const [caseDt, set] = useState<any>(blog)
   const [show, setShow] = useState(false)
   const { pathname } = useLocation()
   const menuItems = [
     {
       title: 'all articles',
-      link: '/blogs',
+      link: '/blog',
       tab: 'all articles',
     },
     {
       title: 'web app',
-      link: '/blogs/web-app',
+      link: '/blog/web-app',
       tab: 'web app',
     },
     {
       title: 'mobile app',
-      link: '/blogs/mobile-app',
+      link: '/blog/mobile-app',
       tab: 'mobile app',
     },
     {
       title: 'website',
-      link: '/blogs/website',
+      link: '/blog/website',
       tab: 'website',
     },
     {
       title: 'startups',
-      link: '/blogs/startups',
+      link: '/blog/startups',
       tab: 'startups',
     },
     {
       title: 'blockchain',
-      link: '/blogs/blockchain',
+      link: '/blog/blockchain',
       tab: 'blockchain',
     },
     {
       title: 'healthcar',
-      link: '/blogs/healthcar',
+      link: '/blog/healthcar',
       tab: 'healthcar',
     },
   ]
@@ -64,7 +64,7 @@ const BlogsContent = observer(() => {
       ? pathname.split('/').pop()?.split('-').join(' ')
       : pathname.split('/').pop()
     switch (tab) {
-      case 'cases':
+      case 'blog':
         setState(dt)
         break
       case `${tab}`:
@@ -86,18 +86,18 @@ const BlogsContent = observer(() => {
 
   useEffect(() => {
     if (GlobalState.locoScroll) (GlobalState.locoScroll as any).update()
-    filterByType(cases)
+    filterByType(blog)
     ScrollTrigger.refresh()
   }, [pathname])
 
   useEffect(() => {
     setTimeout(() => {
-      const title = document.querySelectorAll('.selected-blogs__title-text')
-      if (!title || !document.querySelector('.blogs-page')) return
+      const title = document.querySelectorAll('.selected-blog__title-text')
+      if (!title || !document.querySelector('.blog-page')) return
       var tl = gsap.timeline({
         ease: 'power2',
         scrollTrigger: {
-          trigger: `.blogs-page`,
+          trigger: `.blog-page`,
           start: isTouch ? 'top bottom' : 'top center',
           toggleActions: 'play none none none',
         },
@@ -109,7 +109,7 @@ const BlogsContent = observer(() => {
         stagger: 0.2,
       })
 
-      const casePage = document.querySelector('.blogs-page')
+      const casePage = document.querySelector('.blog-page')
       if (casePage) {
         document.body.style.background = 'transparent'
       }
@@ -118,29 +118,27 @@ const BlogsContent = observer(() => {
 
 
   return (
-    <section className="blogs-page">
-
+    <section className="blog-page">
       <PowerTitle
         count={caseDt ? caseDt.length : 0}
-        section="blogs-page"
+        section="blog-page"
         classList=""
       />
-      <div className="cases-page__menu blogs-menu">
-        {menuItems.map((m, idx) => (
-          <SplitText
-            classList={`blogs-menu__item ${pathname.split('/').pop() == m.link.split('/').pop() && 'active'}`}
-            text={m.title}
+      <div className="cases-page__menu blog-menu">
+        {menuItems.map((m, idx) => {
+          return <SplitText
+            classList={`blog-menu__item ${pathname.split('/').pop() == m.link.split('/').pop() && 'active'}`}
+            text={`${m.title}`}
             path={m.link}
             target={false}
             key={idx}
           />
-
-        ))}
+        })}
       </div>
-      <div className="selected-cases__list cases-list">
+      <div className="blog-list">
         {casesData &&
           casesData.map((c: any, idx: number) => (
-            <div className="cases-item ">
+            <div className="blog-item ">
               <Animated
                 animationIn="fadeInUp"
                 animationOut="fadeIn"
@@ -148,19 +146,24 @@ const BlogsContent = observer(() => {
                 animationOutDuration={1500}
                 isVisible={true}
                 key={idx}
+                style={{ width: '100%' }}
               >
                 {' '}
-                <ParallaxCase item={c} />
-                <div className="cases-item__info">
-                  <div className="cases-item__title">{c.title}</div>
-                  <div className="cases-item__type">{c.types.join(' / ')}</div>
-                </div>{' '}
+                <BlogItem item={c} />
+
+                {' '}
               </Animated>
             </div>
           ))}
       </div>
+      <MagnetButton
+        path="/blog"
+        text="Show more"
+        classList="btn-primary btn-blog"
+        wrapperClass="appear appear--home"
+      />
     </section >
   )
 })
 
-export default BlogsContent
+export default BlogContent

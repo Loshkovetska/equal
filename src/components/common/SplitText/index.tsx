@@ -66,21 +66,21 @@ const SplitText = ({
         target && (window.location = path)
       }}
     >
-      {splitText(text).map((w, ind) => (
-        <Fragment key={ind}>
+      {splitText(text).map((w, ind) => {
+        return <Fragment key={ind}>
           <span className={classNames('word')} data-word={w}>
-            {w.split('').map((s, idx) => (
-              <span className={`char ${isActiveCharCode}`} key={idx} data-char={s}>
+            {w.split('').map((s, idx) => {
+              return <span className={`char ${isActiveCharCode}`} key={idx} data-char={s}>
                 {s}
               </span>
-            ))}
+            })}
             <span className="full-text">{w}</span>
           </span>
           {ind + 1 != splitText(text).length && (
             <span className="whitespace"></span>
           )}
         </Fragment>
-      ))}
+      })}
     </Link>
   )
 }

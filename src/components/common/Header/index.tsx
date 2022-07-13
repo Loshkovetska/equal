@@ -174,7 +174,7 @@ const Header = observer(({ classlist = '' }: { classlist?: string }) => {
               <SplitText
                 classList="link-rotate"
                 text="blog"
-                path="/blogs"
+                path="/blog"
                 target={false}
               />
               <SplitText

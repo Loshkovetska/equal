@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import './blogArticle.scss'
 import MagnetButton from '../common/MagnetButton'
-import blogs from './blogs'
+import blog from './blog'
 import parse from 'html-react-parser'
 import gsap from 'gsap'
 import { useEffect, useLayoutEffect, useRef } from 'react'
@@ -133,29 +133,29 @@ const BlogArticle = () => {
 
   const goNext = () => {
     let idx = 0
-    blogs.forEach((c, ind) => {
+    blog.forEach((c, ind) => {
       if (pathname.includes(c.link)) {
         idx = ind
       }
     })
 
     let next
-    if (idx + 1 != blogs.length) {
-      next = blogs[idx + 1]
-    } else next = blogs[0]
+    if (idx + 1 != blog.length) {
+      next = blog[idx + 1]
+    } else next = blog[0]
     window.location.href = `/case${next.link}`
   }
 
-  const caseItem = (blogs as any).find((c: any) => pathname.includes(c.link))
+  const caseItem = (blog as any).find((c: any) => pathname.includes(c.link))
   if (!caseItem) return <></>
   return (
     <div className="case">
       <div className="slide-wrap">
         <div
           className="case__link-back slide-up"
-          onClick={() => (window.location.href = '/blogs')}
+          onClick={() => (window.location.href = '/blog')}
         >
-          <SplitText text={`< Back`} path="/blogs" classList="" target />
+          <SplitText text={`< Back`} path="/blog" classList="" target />
         </div>
       </div>
       <div className="case__content">

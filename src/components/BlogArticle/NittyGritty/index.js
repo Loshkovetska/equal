@@ -1,3 +1,6 @@
+import nittyGritty1 from '../../../images/blog/NittyGritty/image1.png'
+import nittyGritty2 from '../../../images/blog/NittyGritty/image2.png'
+import nittyGritty3 from '../../../images/blog/NittyGritty/image3.png'
 import locallollo1 from '../../../images/cases/locallollo/image1.png'
 import locallollo2 from '../../../images/cases/locallollo/image2.png'
 import locallollo3 from '../../../images/cases/locallollo/image3.png'
@@ -5,15 +8,15 @@ import locallollo4 from '../../../images/cases/locallollo/image4.png'
 import locallollo5 from '../../../images/cases/locallollo/image5.png'
 import video from '../../../images/cases/locallollo/video.png'
 
-export const locallolo =
+export const NittyGritty = {
+  id: 1,
+  readTime: 10,
+  title: 'The Nitty-Gritty of Modern Mobile App Design. Part I',
+  link: '/NITTYGRITTY',
 
-{
-    id: 4,
-    title: 'LOCALLOLO',
-    link: '/LOCALLOLO',
-    types: ['B2B MARKETPLACE', 'WEBSITE'],
-    src: 'https://equal.design/videos/Locallolo.mp4',
-    info: `<ul>
+  types: ['Design', 'Ed-tech'],
+  src: nittyGritty1,
+  info: `<ul>
       <li class="slide-wrap">
        <div class="slide-up">
         <h3>CLIENT</h3>
@@ -39,7 +42,7 @@ Website / </p> </div>
 
       </li>
     </ul>`,
-    description: `
+  description: `
       <div>
        <div class="slide-wrap title"> <h1 class="slide-up">LocalLolo</h1></div>
        <div class="parallax appear">        <video
@@ -173,4 +176,4 @@ In order to compete on an equal footing with large companies, it is necessary to
 
 
 `,
-  }
+}

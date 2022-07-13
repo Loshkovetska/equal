@@ -5,11 +5,11 @@ import { observer } from 'mobx-react'
 import CursorBall from '../components/common/CursorBall'
 
 import Footer from '../components/common/Footer'
-import BlogsContent from '../components/BlogsContent'
+import BlogContent from '../components/BlogContent'
 import useLocoScroll from '../mocks/useLocoScroll'
 import { useLocation } from 'react-router'
 
-const BlogsPage = observer(() => {
+const BlogPage = observer(() => {
   const [loading, setLoading] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const pathname = useLocation();
@@ -45,7 +45,7 @@ const BlogsPage = observer(() => {
           <div className="smooth" data-scroll-container ref={containerRef}>
             <Header />
 
-            <BlogsContent />
+            <BlogContent />
             <Footer />
           </div>
           <CursorBall />
@@ -55,4 +55,4 @@ const BlogsPage = observer(() => {
   )
 })
 
-export default BlogsPage
+export default BlogPage

@@ -1,0 +1,350 @@
+.blog-page {
+  width: 100%;
+  position: relative;
+  padding: 0 40px;
+  margin-bottom: -50px;
+  .selected-blog__title-text {
+    visibility: hidden;
+  }
+
+  &__back {
+    cursor: pointer;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+
+    padding-top: 100px;
+    position: absolute;
+
+    .whitespace {
+      margin: 0 8px 0 0;
+    }
+
+    .btn--split {
+      color: #2b2727;
+      font-size: 14px;
+      line-height: 110%;
+    }
+
+    .word:first-child {
+      top: -1px;
+    }
+
+    @media (max-width: 1024px) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .selected-blog__title {
+      margin: 0;
+    }
+  }
+
+  @media (max-width: 650px) {
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .selected-blog__title {
+    @media (max-width: 768px) {
+      .selected-blog__title {
+        align-items: center;
+        &-cont {
+          justify-content: center;
+          &:first-child {
+            margin-left: -60px;
+          }
+        }
+      }
+    }
+    @media (max-width: 650px) {
+      .selected-blog__title {
+        &-cont {
+          &:first-child {
+            margin-left: -30px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.blog-menu {
+  display: flex;
+  margin: -34px 0 50px;
+
+  @media (max-width: 1024px) {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    margin-top: 16px;
+    padding: 16px;
+    line-height: 140%;
+    border: 2px solid #2b2727;
+    display: flex;
+    align-items: center;
+
+    column-gap: 3px;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.5s linear;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #2b2727;
+    text-decoration: none;
+    position: relative;
+
+    &::before {
+      z-index: 100;
+      content: "";
+      width: 100%;
+      height: 21px;
+      background-color: white;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0 px;
+    }
+    &::after {
+      z-index: 100;
+      content: "";
+      width: 100%;
+      height: 21px;
+      background-color: white;
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+    }
+
+    &.active {
+      border: 2px solid transparent;
+      background: #2b2727;
+      color: white;
+
+      &::before {
+        background-color: #2b2727;
+      }
+      &::after {
+        background-color: #2b2727;
+      }
+      &:hover {
+        border: 2px solid #2b2727;
+      }
+    }
+    &:hover {
+      border: 2px solid #e1f23a;
+    }
+
+    &:not(:last-child) {
+      margin-right: 16px;
+    }
+
+    @media (max-width: 1024px) {
+      padding: 12px;
+    }
+  }
+}
+
+.blog-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  max-width: 1827px;
+  margin: 0 auto;
+  background-color: white;
+}
+
+.blog-item {
+  width: 100%;
+  //margin-right: 31px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  box-sizing: border-box;
+  background-color: white;
+  border: 1px solid #8f8f8f;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background-color: #e1f23a;
+  }
+  &:last-child {
+    border-bottom: 1px solid #8f8f8f;
+  }
+  &_read-time {
+    font-size: 18px;
+    width: 240px;
+    align-self: start;
+    padding-top: 40px;
+    color: #2b2727;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    font-size: 56px;
+    line-height: 46px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #2b2727;
+
+    @media (max-width: 350px) {
+      font-size: 36px;
+      line-height: 34px;
+    }
+  }
+
+  &__type {
+    font-size: 18px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: #2b2727;
+
+    @media (max-width: 350px) {
+      font-size: 12px;
+      line-height: 17px;
+    }
+  }
+
+  &__img {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 40px;
+
+    height: 352px;
+    width: 100%;
+    overflow: hidden;
+    .item__img {
+      height: 352px;
+      width: 460px;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    video {
+      width: 100%;
+      height: 100%;
+    }
+    @media (max-width: 768px) {
+      height: 400px;
+    }
+    @media (max-width: 350px) {
+      height: 350px;
+    }
+  }
+
+  &__info {
+    padding: 40px 0px;
+    max-width: 512px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1460px) and (min-height: 700px) {
+  .blog-item__img {
+    max-height: 544px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .blog-item {
+    // min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-list {
+    padding-bottom: 0;
+  }
+  .selected-blog__title {
+    padding: 60px 0;
+  }
+}
+
+@media (max-width: 650px) {
+  .selected-blog {
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+
+    &__title {
+      padding: 50px 0 40px;
+
+      &-num {
+        font-size: 22px;
+        line-height: 24px;
+        padding-left: 10px;
+        -webkit-text-stroke-width: 0;
+      }
+    }
+  }
+  .blog-item {
+    display: none;
+    width: 100%;
+    max-width: unset;
+    min-height: auto;
+    // margin-right: 0 !important;
+    // margin-bottom: 60px !important;
+    transform: none !important;
+  }
+}
+
+.appear--home {
+  margin-top: 100px;
+  margin-bottom: 0px !important;
+  cursor: pointer;
+  display: block;
+}
+
+.appear--home:hover .btn-primary {
+  box-shadow: inset 0 0 0 2px #e1f23a;
+  background: transparent;
+}
+
+@media screen and (max-width: 1024px) {
+  .appear--home {
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .appear--home {
+    margin-top: 100px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .appear--home {
+    margin-top: 70px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .appear--home {
+    margin-top: 55px;
+  }
+}
+
+.link-rotate {
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #2b2727;
+  text-decoration: none;
+}

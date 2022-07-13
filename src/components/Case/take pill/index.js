@@ -8,12 +8,12 @@ import p5 from '../../../images/cases/pill/5.png'
 
 export const takepill =
 {
-    id: 10,
-    title: 'TAKEPILL',
-    link: '/TAKEPILL',
-    types: ['HEALTHCARE', 'MOBILE APP'],
-    src: 'https://equal.design/videos/TakePill-700x890-2.mp4',
-    info: `<ul>
+  id: 10,
+  title: 'TAKEPILL',
+  link: '/TAKEPILL',
+  types: ['HEALTHCARE', 'MOBILE APP'],
+  src: 'https://equal.design/videos/TakePill-700x890-2.mp4',
+  info: `<ul>
       <li  class="slide-wrap">
       <div class="slide-up">  <h3>ROLE</h3>
         <p>
@@ -25,7 +25,7 @@ UX Analytics / UX & UI design</p> </div>
 Mobile App / Healthcare </p> </div>
       </li>
     </ul>`,
-    description: `
+  description: `
       <div>
        <div class="slide-wrap title"> <h1 class="slide-up">TakePill</h1></div>
        <div class="parallax appear"> <img src=${p1} alt="" /></div>
@@ -126,4 +126,4 @@ Final drafts were animated to create a clickable prototype for the ultimate test
 
 </div>
 `,
-  }
+}
