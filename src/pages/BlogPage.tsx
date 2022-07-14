@@ -42,6 +42,7 @@ const BlogPage = observer(() => {
         <PreLoader loading={loading} />
       ) : (
         <>
+
           <div className="smooth" data-scroll-container ref={containerRef}>
             <Header />
 

@@ -157,7 +157,7 @@ const BlogContent = observer(() => {
           {casesData &&
             casesData.map((c: any, idx: number) => {
               const isFirstFive = idx < 5 ? 'blog-item' : 'blog-item d-none'
-              return <div className={isFirstFive}>
+              return <div className={isFirstFive} key={idx}>
                 <Animated
                   animationIn="fadeInUp"
                   animationOut="fadeIn"

@@ -408,3 +408,16 @@
   color: #2b2727;
   text-decoration: none;
 }
+.progressBar {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  height: 4px;
+  z-index: 999;
+  top: 0px;
+  bottom: unset;
+  // background: linear-gradient(to right, #e1f23a 10%, transparent 0px);
+  background-color: #2b2727;
+  visibility: visible !important;
+  opacity: 1 !important;
+}

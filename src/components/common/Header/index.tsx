@@ -64,8 +64,9 @@ const Header = observer(({ classlist = '' }: { classlist?: string }) => {
                 pinSpacing: false,
               },
             })
+
             gsap.from(
-              ['.header-fixed .header__logo', '.header .header__text', ,],
+              ['.header-fixed .header__logo', '.header .header__text',],
               {
                 transformOrigin: 'center',
                 y: -100,
@@ -129,7 +130,7 @@ const Header = observer(({ classlist = '' }: { classlist?: string }) => {
       const headerRect = header?.getBoundingClientRect()
 
         ; (GlobalState.locoScroll as any).on('scroll', (args: any) => {
-          console.log(args.direction)
+          // console.log(args.direction)
           if (args.scroll.y > headerRect.bottom) {
             if (args.direction == 'up') {
               document.querySelector('header.showup')!.classList.add('display')
@@ -158,6 +159,7 @@ const Header = observer(({ classlist = '' }: { classlist?: string }) => {
   return (
     <>
       <header className={classNames('header', classlist)} ref={header}>
+
         <div
           className="header__logo"
           onClick={() => (window.location.href = '/')}

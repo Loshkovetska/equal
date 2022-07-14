@@ -1,13 +1,13 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import './blogArticle.scss'
 import MagnetButton from '../common/MagnetButton'
+import SplitText from '../common/SplitText'
 import blog from './blog'
 import parse from 'html-react-parser'
 import gsap from 'gsap'
 import { useEffect, useLayoutEffect, useRef } from 'react'
 import Estimate from '../Estimate'
 import { isSafariDesktop, is_firefox } from '../../mocks/info'
-import SplitText from '../common/SplitText'
 import ReactDOMServer from 'react-dom/server'
 
 const BlogArticle = () => {
@@ -150,6 +150,7 @@ const BlogArticle = () => {
   if (!caseItem) return <></>
   return (
     <div className="case">
+
       <div className="slide-wrap">
         <div
           className="case__link-back slide-up"
