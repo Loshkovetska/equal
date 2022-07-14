@@ -6,6 +6,8 @@ const blog = [
   NittyGritty,
   NittyGrittyPart2,
   NittyGritty,
+  NittyGrittyPart2,
+  NittyGritty,
 ]
 
 export default blog

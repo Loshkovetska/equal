@@ -163,16 +163,8 @@ const BlogArticle = () => {
           <div className="case__content-col">
             <div className="case__content-info list-desk">
               {parse(caseItem.info)}
-              {/* {document.querySelectorAll('.case__content-info ul li a') && (
-                <SplitText
-                  text={'dc'}
-                  path={'dcd'}
-                  classList="case-link"
-                  target
-                /> */}
-              {/* )} */}
             </div>
-            <Estimate />
+
           </div>
           <div className="case__content-col">
             <div className="case__content-right">

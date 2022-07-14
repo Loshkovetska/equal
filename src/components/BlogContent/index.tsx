@@ -84,6 +84,17 @@ const BlogContent = observer(() => {
     }
   }
 
+  const showMoreArticle = () => {
+    if (GlobalState.locoScroll) (GlobalState.locoScroll as any).update()
+    const articles = document.querySelectorAll('.blog-item')
+    for (let i = 0; i < articles.length; i++) {
+      const element = articles[i];
+      element.classList.remove('d-none')
+    }
+    ScrollTrigger.refresh()
+
+  }
+
   useEffect(() => {
     if (GlobalState.locoScroll) (GlobalState.locoScroll as any).update()
     filterByType(blog)
@@ -144,8 +155,9 @@ const BlogContent = observer(() => {
 
         <div className="blog-list">
           {casesData &&
-            casesData.map((c: any, idx: number) => (
-              <div className="blog-item ">
+            casesData.map((c: any, idx: number) => {
+              const isFirstFive = idx < 5 ? 'blog-item' : 'blog-item d-none'
+              return <div className={isFirstFive}>
                 <Animated
                   animationIn="fadeInUp"
                   animationOut="fadeIn"
@@ -160,13 +172,14 @@ const BlogContent = observer(() => {
                   {' '}
                 </Animated>
               </div>
-            ))}
+            })}
         </div>
         <MagnetButton
-          path="/blog"
           text="Show more"
           classList="btn-primary btn-blog"
           wrapperClass="appear appear--home"
+          path={''}
+          click={() => showMoreArticle()}
         />
       </section >
     </>

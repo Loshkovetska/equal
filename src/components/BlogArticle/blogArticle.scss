@@ -152,7 +152,8 @@
         a,
         a.case-link {
           position: relative;
-          padding-right: 20px;height: 20px;
+          padding-right: 20px;
+          height: 20px;
           .word {
             line-height: 160%;
             font-size: 0;
@@ -179,7 +180,7 @@
           }
 
           &::after {
-            content: url('../../images/icons/arrow-right-up-line.svg');
+            content: url("../../images/icons/arrow-right-up-line.svg");
             position: absolute;
             right: 0;
             top: calc(50% - 9px);
@@ -482,4 +483,8 @@
       font-size: 42px;
     }
   }
+}
+
+.d-none {
+  display: none !important;
 }
