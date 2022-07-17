@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 
 import './blogArticle.scss'
 import MagnetButton from '../common/MagnetButton'
@@ -12,15 +12,13 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 import GlobalState from '../../stores/GlobalState'
 import ScrollToTopIcon from "../../images/icons/arrow_scrollToTop.svg"
 import ScrollToPlugin from 'gsap/ScrollToPlugin'
+import { observer } from 'mobx-react'
 
 import { useEffect, Fragment, useState, useRef } from 'react'
-import { isSafariDesktop, is_firefox } from '../../mocks/info'
-import ReactDOMServer from 'react-dom/server'
-import { runInAction } from 'mobx'
 
-const BlogArticle = () => {
+
+const BlogArticle = observer(({ articleData }: { articleData: any }) => {
     gsap.registerPlugin(ScrollToPlugin);
-    const { pathname } = useLocation()
     const topRef = useRef<HTMLDivElement>(null)
     const titlesBlock = useRef<HTMLDivElement>(null)
     const articleScroll = useRef<HTMLDivElement>(null)
@@ -144,39 +142,36 @@ const BlogArticle = () => {
             })
     }, [])
 
-    const [initialTitlesOffset, setInitialTitlesOffset] = useState(0)
-
     useEffect(() => {
+        const articleBegin = (articleScroll.current as any).offsetTop + 120;
         setTimeout(() => {
-            const articleBegin = (articleScroll.current as any);
-            const windowHalfHeigth = window.innerHeight / 2;
-            const currentTitlesBlock = (titlesBlock.current as any);
-            const isStartAfterScroll = Math.floor((windowHalfHeigth - (currentTitlesBlock.offsetHeight / 2)))
             if (articleBegin) {
-                setInitialTitlesOffset(articleBegin.offsetTop + 120)
-                return (document.querySelector('.article__content-info',) as any).style.top = `${isStartAfterScroll}px`;
+                ScrollTrigger.refresh()
+                return (document.querySelector('.article__content-info',) as any).style.top = `${articleBegin}px`;
             }
         }, 700);
-    }, [articleScroll.current, initialTitlesOffset])
+    }, [articleScroll.current])
 
     useEffect(() => {
         if (GlobalState.locoScroll) {
             ; (GlobalState.locoScroll as any).on('scroll', (args: any) => {
+                const articleBegin = (articleScroll.current as any).offsetTop + 120;
                 const windowHalfHeigth = window.innerHeight / 2;
                 const currentTitlesBlock = (titlesBlock.current as any);
                 const currentArticleBlock = (articleScroll.current as any);
-                const isStartAfterScroll = Math.floor((windowHalfHeigth - (currentTitlesBlock.offsetHeight / 2)))
+                const isStartAfterScroll = Math.floor((windowHalfHeigth - (currentTitlesBlock.offsetHeight / 2)) + args.scroll.y)
                 const isEndOfArticle = currentArticleBlock.offsetHeight + 20
-
-                if (args.scroll.y < isEndOfArticle) {
-                    (document.querySelector('.article__content-info',) as any).style.top = `${isStartAfterScroll + args.scroll.y}px`
+                if (args.scroll.y > isEndOfArticle) return
+                if (isStartAfterScroll < articleBegin) {
+                    console.log("🚀 ~ file: index.tsx ~ line 165 ~ ; ~ isStartAfterScroll", isStartAfterScroll);
+                    (document.querySelector('.article__content-info',) as any).style.top = `${articleBegin}px`
+                } else {
+                    (document.querySelector('.article__content-info',) as any).style.top = `${isStartAfterScroll}px`
                 }
             })
         }
-    }, [articleScroll.current])
+    }, [GlobalState.locoScroll])
 
-    const articleItem = (blog as any).find((c: any) => pathname.includes(c.link))
-    if (!articleItem) return <></>
 
 
     return (
@@ -201,11 +196,11 @@ const BlogArticle = () => {
                             <p className='article__content-titles slide-up'>
                                 Table of contents
                             </p>
-                            {(articleItem.titles as any).map((title: string, id: number) => {
+                            {(articleData.content as any).map((p: any, id: number) => {
                                 return (
-                                    <a href='#' className="slide-up article__content-titles_title" key={id} >
-                                        {title}
-                                    </a>
+                                    <button className="slide-up article__content-titles_title" key={id} >
+                                        {p.title}
+                                    </button>
                                 )
                             })}
                         </div>
@@ -215,16 +210,26 @@ const BlogArticle = () => {
                     <div className="article__content-col">
                         <div className="article__content-right">
                             <div>
-                                <h1 >{articleItem.title}</h1>
+                                <h1 >{articleData.title}</h1>
                                 <div className="article__type">
                                     <div className="article_read-time">
-                                        {articleItem.readTime} min read
+                                        {articleData.readTime} min read
                                     </div>
-                                    {articleItem.types.join(' / ')}
+                                    {articleData.types.join(' / ')}
                                 </div>
                             </div>
                             <div ref={articleScroll} id="article-block">
-                                {parse(articleItem.description)}
+                                {articleData.content.map((a: any, idx: number) => {
+                                    const isFirst = idx === 0
+                                    return (
+                                        <div key={idx}>
+                                            {!isFirst && <h2 >{a.title}</h2>}
+                                            <div
+                                                dangerouslySetInnerHTML={{ __html: a.description }}
+                                            ></div>
+                                        </div>
+                                    )
+                                })}
 
                                 <button className="scrollToTop"
                                     onClick={() => {
@@ -276,7 +281,7 @@ const BlogArticle = () => {
                 </div>
             </div>
 
-            <BlogRelatedSlider relatedTypes={articleItem.types} />
+            <BlogRelatedSlider relatedTypes={articleData.types} />
             <div className="article__bottom">
                 <MagnetButton
                     text="read all articles"
@@ -287,6 +292,6 @@ const BlogArticle = () => {
             </div>
         </div >
     )
-}
+})
 
 export default BlogArticle

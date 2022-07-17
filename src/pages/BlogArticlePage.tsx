@@ -6,16 +6,19 @@ import { observer } from 'mobx-react'
 import CursorBall from '../components/common/CursorBall'
 import Footer from '../components/common/Footer'
 import BlogArticle from '../components/BlogArticle'
-import { useLocation } from 'react-router'
+import { useLocation, useParams } from 'react-router'
 import { runInAction } from 'mobx'
 import GlobalState from '../stores/GlobalState'
 import Estimate from '../components/Estimate'
 import ScrollToTop from '../components/common/ScrollToTop'
 import useLocoScroll from '../mocks/useLocoScroll'
+import { api } from '../api'
 
 const BlogArticlePage = observer(() => {
   const [loading, setLoading] = useState(false)
   const { pathname } = useLocation()
+  const { id } = useParams()
+
   const container = useRef(null)
   const scroll = useRef(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -55,18 +58,28 @@ const BlogArticlePage = observer(() => {
       ; (GlobalState.locoScroll as any).on('scroll', (args: any) => {
         if (args.scroll.y) {
           const defineScrollOne = args.limit / 100
-          const scrollProgress = Math.floor(args.scroll.y / defineScrollOne);
+          const scrollProgress = args.scroll.y / defineScrollOne;
           (document.querySelector(
             '.progressBar',
           ) as any).style.backgroundImage = "linear-gradient(to right, " + `#e1f23a ${scrollProgress}%` + ", " + 'transparent 0px' + ")";
         }
       })
     }
-  }, [])
+  }, [GlobalState.locoScroll])
+
+  const [articleItem, setArticleData] = useState<any>(null);
+
+  const article = async () => {
+    if (!articleItem) {
+      const article = await api.blog.getArticle(id)
+      setArticleData(article);
+    }
+  }
+  article();
 
   return (
     <>
-      {loading ? (
+      {loading || !articleItem ? (
         <PreLoader loading={loading} />
       ) : (
         <>
@@ -76,7 +89,7 @@ const BlogArticlePage = observer(() => {
 
           <div className="smooth" data-scroll-container ref={containerRef}>
             <Header classlist="header-fixed" />
-            <BlogArticle />
+            <BlogArticle articleData={articleItem} />
             <Footer />
           </div>
 

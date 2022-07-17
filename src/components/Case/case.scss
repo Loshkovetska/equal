@@ -16,6 +16,12 @@
     overflow: hidden;
     margin-bottom: 0;
   }
+  .slide-up {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
   .slide-up:not(h2) {
     margin-bottom: 0;
   }
@@ -76,7 +82,6 @@
 
   &__content-row {
     display: flex;
-
     @media (max-width: 768px) {
       flex-direction: column;
     }
@@ -152,7 +157,8 @@
         a,
         a.case-link {
           position: relative;
-          padding-right: 20px;height: 20px;
+          padding-right: 20px;
+          height: 20px;
           .word {
             line-height: 160%;
             font-size: 0;
@@ -179,7 +185,7 @@
           }
 
           &::after {
-            content: url('../../images/icons/arrow-right-up-line.svg');
+            content: url("../../images/icons/arrow-right-up-line.svg");
             position: absolute;
             right: 0;
             top: calc(50% - 9px);
@@ -214,7 +220,7 @@
   }
 
   img {
-    max-width: 100%;
+    // max-width: 100%;
     width: 100%;
   }
 
@@ -393,6 +399,7 @@
   }
 
   &__content-right {
+    width: 70vw;
     div {
       margin-bottom: 100px;
 

@@ -9,7 +9,7 @@ export const menuItems = [
   },
   {
     title: 'blog',
-    link: '/blogs',
+    link: '/blog',
   },
 ]
 

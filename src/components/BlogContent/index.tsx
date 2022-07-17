@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { isTouch } from '../../mocks/info'
 import GlobalState from '../../stores/GlobalState'
-import blog from '../BlogArticle/blog'
+// import blog from '../BlogArticle/blog'
 import MagnetButton from '../common/MagnetButton'
 import PowerTitle from '../common/PowerTitle'
 import BlogItem from '../BlogItem'
@@ -11,53 +11,17 @@ import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import './blog.scss'
 import { observer } from 'mobx-react'
+import { api } from '../../api'
 import SplitText from '../common/SplitText'
 import { Animated } from 'react-animated-css'
 
 import 'animate.css/animate.css'
 
-const BlogContent = observer(() => {
-  const [casesData, setState] = useState<any>(null)
+const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, }) => {
+  const [blogData, setState] = useState<any>(null)
   const [caseDt, set] = useState<any>(blog)
   const [show, setShow] = useState(false)
   const { pathname } = useLocation()
-  const menuItems = [
-    {
-      title: 'all articles',
-      link: '/blog',
-      tab: 'all articles',
-    },
-    {
-      title: 'web app',
-      link: '/blog/web-app',
-      tab: 'web app',
-    },
-    {
-      title: 'mobile app',
-      link: '/blog/mobile-app',
-      tab: 'mobile app',
-    },
-    {
-      title: 'website',
-      link: '/blog/website',
-      tab: 'website',
-    },
-    {
-      title: 'startups',
-      link: '/blog/startups',
-      tab: 'startups',
-    },
-    {
-      title: 'blockchain',
-      link: '/blog/blockchain',
-      tab: 'blockchain',
-    },
-    {
-      title: 'healthcare',
-      link: '/blog/healthcare',
-      tab: 'healthcare',
-    },
-  ]
 
   const filterByType = (dt: any) => {
     const tab = pathname.includes('-')
@@ -92,7 +56,6 @@ const BlogContent = observer(() => {
       element.classList.remove('d-none')
     }
     ScrollTrigger.refresh()
-
   }
 
   useEffect(() => {
@@ -127,7 +90,6 @@ const BlogContent = observer(() => {
     })
   }, [])
 
-
   return (
     <>
       <section className="blog-page">
@@ -140,22 +102,23 @@ const BlogContent = observer(() => {
 
       <div className="blog-menu">
         <div className="blog-menu__block">
-          {menuItems.map((m, idx) => {
-            return <SplitText
-              classList={`blog-menu__item ${pathname.split('/').pop() == m.link.split('/').pop() && 'active'}`}
-              text={`${m.title} [0]`}
-              path={m.link}
-              target={false}
-              key={idx}
-            />
-          })}
+          {menuState &&
+            menuState.map((m: any, idx: number) => {
+              return <SplitText
+                classList={`blog-menu__item ${pathname.split('/').pop() == m.link.split('/').pop() && 'active'}`}
+                text={`${m.title} [${m.count}]`}
+                path={m.link}
+                target={false}
+                key={idx}
+              />
+            })}
         </div>
       </div>
       <section className="blog-page">
 
         <div className="blog-list">
-          {casesData &&
-            casesData.map((c: any, idx: number) => {
+          {blogData &&
+            blogData.map((c: any, idx: number) => {
               const isFirstFive = idx < 5 ? 'blog-item' : 'blog-item d-none'
               return <div className={isFirstFive} key={idx}>
                 <Animated

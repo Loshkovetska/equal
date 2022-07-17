@@ -47,7 +47,6 @@ const BlogRelatedSlider = observer(({ relatedTypes }: { relatedTypes: any }) => 
 	// }
 	useEffect(() => {
 		if (GlobalState.locoScroll) (GlobalState.locoScroll as any).update()
-
 		setState(blog)
 		ScrollTrigger.refresh()
 	}, [pathname])
@@ -86,7 +85,6 @@ const BlogRelatedSlider = observer(({ relatedTypes }: { relatedTypes: any }) => 
 		slidesToShow: 1,
 		slidesToScroll: 1,
 	};
-
 	const isFirstSlide = currentPosition === 1
 	const isLastSlide = casesData && currentPosition === casesData.length
 
@@ -142,6 +140,28 @@ const BlogRelatedSlider = observer(({ relatedTypes }: { relatedTypes: any }) => 
 							</div>
 						})}
 				</Slider>
+
+				<div className="blog-slider_controls-mobile">
+					<button
+						className={`blog-slider_controls-btn control_left ${isFirstSlide && 'disable'}`}
+						onClick={() => {
+							(sliderRef.current as any).slickPrev();
+							setCurrentPosition(+currentPosition - 1)
+						}}
+					>
+						<img src={ScrollToTopIcon} width={17} height={10} alt="" />
+					</button>
+					<button
+						className={`blog-slider_controls-btn control_right ${isLastSlide && 'disable'}`}
+						onClick={() => {
+							(sliderRef.current as any).slickNext();
+							setCurrentPosition(+currentPosition + 1)
+
+						}}
+					>
+						<img src={ScrollToTopIcon} width={17} height={10} alt="" />
+					</button>
+				</div>
 			</section >
 		</>
 	)

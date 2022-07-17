@@ -9,6 +9,8 @@ import BlogContent from '../components/BlogContent'
 import useLocoScroll from '../mocks/useLocoScroll'
 import { useLocation } from 'react-router'
 
+import { api } from '../api'
+
 const BlogPage = observer(() => {
   const [loading, setLoading] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -36,9 +38,27 @@ const BlogPage = observer(() => {
   if (typeof window === 'undefined' || !window.document) {
     return <></>
   }
+
+  const [menuState, setMenuState] = useState<any>(null);
+
+  const [blogData, setBlogData] = useState<any>(null)
+
+  const menu = async () => {
+    if (!menuState) {
+      const menu = await api.blog.getMenu();
+      console.log(menu);
+      setMenuState(menu);
+
+      const blog = await api.blog.getBlog();
+      console.log(blog);
+      setBlogData(blog);
+    }
+  }
+  menu();
+
   return (
     <>
-      {loading ? (
+      {loading || !menuState || !blogData ? (
         <PreLoader loading={loading} />
       ) : (
         <>
@@ -46,7 +66,7 @@ const BlogPage = observer(() => {
           <div className="smooth" data-scroll-container ref={containerRef}>
             <Header />
 
-            <BlogContent />
+            <BlogContent menuState={menuState} blog={blogData} />
             <Footer />
           </div>
           <CursorBall />

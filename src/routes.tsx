@@ -19,7 +19,7 @@ const routes: Array<RouteType> = [
   { path: '/text-us', component: <ContactPage /> },
   { path: '/thanks', component: <ThanksPage /> },
   { path: '/blog', component: <BlogPage /> },
-  { path: '/blog/:name', component: <BlogArticlePage /> },
+  { path: '/blog/:id', component: <BlogArticlePage /> },
 ]
 
 export default routes

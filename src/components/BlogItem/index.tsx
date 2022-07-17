@@ -68,7 +68,7 @@ const BlogItem = observer(({ item }: { item: any }) => {
 
   return (
     <Link
-      to={`/blog${item.link}`}
+      to={`/blog/${item.id}`}
       className="blog-item__img"
       cursor-class="cursor-blog"
       ref={(el) =>
