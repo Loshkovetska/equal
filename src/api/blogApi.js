@@ -29,7 +29,6 @@ const blogApi = {
     },
 
     async getArticle(id) {
-        console.log("🚀 ~ file: blogApi.js ~ line 32 ~ getArticle ~ id", id)
         const fd = new FormData()
 
         fd.append("status", "single-blog")

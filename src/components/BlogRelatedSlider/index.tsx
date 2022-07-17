@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { useEffect, useState, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { isTouch } from '../../mocks/info'

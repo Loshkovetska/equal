@@ -1,9 +1,7 @@
-import classNames from 'classnames'
 import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { isTouch } from '../../mocks/info'
 import GlobalState from '../../stores/GlobalState'
-// import blog from '../BlogArticle/blog'
 import MagnetButton from '../common/MagnetButton'
 import PowerTitle from '../common/PowerTitle'
 import BlogItem from '../BlogItem'
@@ -11,7 +9,6 @@ import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import './blog.scss'
 import { observer } from 'mobx-react'
-import { api } from '../../api'
 import SplitText from '../common/SplitText'
 import { Animated } from 'react-animated-css'
 
@@ -19,34 +16,9 @@ import 'animate.css/animate.css'
 
 const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, }) => {
   const [blogData, setState] = useState<any>(null)
-  const [caseDt, set] = useState<any>(blog)
-  const [show, setShow] = useState(false)
   const { pathname } = useLocation()
 
-  const filterByType = (dt: any) => {
-    const tab = pathname.includes('-')
-      ? pathname.split('/').pop()?.split('-').join(' ')
-      : pathname.split('/').pop()
-    switch (tab) {
-      case 'blog':
-        setState(dt)
-        break
-      case `${tab}`:
-        const res = dt.filter((d: any) => {
-          let flag = false
-          d.types.forEach((t: string) => {
-            if (t.toLocaleLowerCase().includes(tab.toLocaleLowerCase())) {
-              flag = true
-            }
-          })
 
-          if (flag) return d
-        })
-
-        setState(res)
-        break
-    }
-  }
 
   const showMoreArticle = () => {
     if (GlobalState.locoScroll) (GlobalState.locoScroll as any).update()
@@ -60,9 +32,39 @@ const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, 
 
   useEffect(() => {
     if (GlobalState.locoScroll) (GlobalState.locoScroll as any).update()
+    const filterByType = (dt: any) => {
+      const tab = pathname.includes('-')
+        ? pathname.split('/').pop()?.split('-').join(' ')
+        : pathname.split('/').pop()
+      switch (tab) {
+        case 'blog':
+          setState(dt)
+          break
+        case `${tab}`:
+          const res = dt.filter((d: any) => {
+            let flag = false
+            d.types.forEach((t: string) => {
+              if (t.toLocaleLowerCase().includes(tab.toLocaleLowerCase())) {
+                return flag = true
+              }
+              return
+            })
+
+            if (flag) {
+              return d
+            } else {
+              return null
+            }
+
+          })
+
+          setState(res)
+          break
+      }
+    }
     filterByType(blog)
     ScrollTrigger.refresh()
-  }, [pathname])
+  }, [pathname, blog])
 
   useEffect(() => {
     setTimeout(() => {
@@ -94,7 +96,6 @@ const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, 
     <>
       <section className="blog-page">
         <PowerTitle
-          count={caseDt ? caseDt.length : 0}
           section="blog-page"
           classList=""
         />
@@ -105,7 +106,7 @@ const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, 
           {menuState &&
             menuState.map((m: any, idx: number) => {
               return <SplitText
-                classList={`blog-menu__item ${pathname.split('/').pop() == m.link.split('/').pop() && 'active'}`}
+                classList={`blog-menu__item ${pathname.split('/').pop() === m.link.split('/').pop() && 'active'}`}
                 text={`${m.title} [${m.count}]`}
                 path={m.link}
                 target={false}

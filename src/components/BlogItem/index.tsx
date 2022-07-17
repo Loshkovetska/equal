@@ -1,7 +1,6 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import LazyLoader from '../LazyLoader'
 import { observer } from 'mobx-react'
 import { runInAction } from 'mobx'

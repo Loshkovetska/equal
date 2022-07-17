@@ -1,20 +1,15 @@
-import { Link, useParams, useNavigate } from 'react-router-dom'
-
 import './blogArticle.scss'
 import MagnetButton from '../common/MagnetButton'
 import BlogRelatedSlider from '../BlogRelatedSlider'
 import SplitText from '../common/SplitText'
-import blog from './blog'
-import parse from 'html-react-parser'
 import gsap from 'gsap'
-import LocomotiveScroll from 'locomotive-scroll';
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import GlobalState from '../../stores/GlobalState'
 import ScrollToTopIcon from "../../images/icons/arrow_scrollToTop.svg"
 import ScrollToPlugin from 'gsap/ScrollToPlugin'
 import { observer } from 'mobx-react'
 
-import { useEffect, Fragment, useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 
 const BlogArticle = observer(({ articleData }: { articleData: any }) => {
@@ -22,8 +17,8 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
     const topRef = useRef<HTMLDivElement>(null)
     const titlesBlock = useRef<HTMLDivElement>(null)
     const articleScroll = useRef<HTMLDivElement>(null)
+    const [paragraphPosition, setParagraphPosition] = useState<any>([])
 
-    const navigate = useNavigate()
     useEffect(() => {
         setTimeout(() => {
             let section = document.querySelector('.article')
@@ -115,7 +110,7 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
                     const chars = content.split('')
                     const res = []
                     chars.forEach((c: any) => {
-                        if (c != ' ') res.push(c)
+                        if (c !== ' ') res.push(c)
                     })
                         ; (l as HTMLElement).style.setProperty('--char-total', `${res.length}`)
                     let html = ''
@@ -131,7 +126,7 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
             `
 
                         html +=
-                            ind + 1 != content.split(' ').length
+                            ind + 1 !== content.split(' ').length
                                 ? `<span class="whitespace"></span>`
                                 : ''
                     })
@@ -150,7 +145,7 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
                 return (document.querySelector('.article__content-info',) as any).style.top = `${articleBegin}px`;
             }
         }, 700);
-    }, [articleScroll.current])
+    }, [])
 
     useEffect(() => {
         if (GlobalState.locoScroll) {
@@ -163,7 +158,6 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
                 const isEndOfArticle = currentArticleBlock.offsetHeight + 20
                 if (args.scroll.y > isEndOfArticle) return
                 if (isStartAfterScroll < articleBegin) {
-                    console.log("🚀 ~ file: index.tsx ~ line 165 ~ ; ~ isStartAfterScroll", isStartAfterScroll);
                     (document.querySelector('.article__content-info',) as any).style.top = `${articleBegin}px`
                 } else {
                     (document.querySelector('.article__content-info',) as any).style.top = `${isStartAfterScroll}px`
@@ -172,7 +166,26 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
         }
     }, [GlobalState.locoScroll])
 
+    useEffect(() => {
+        const articleBegin = (articleScroll.current as any).offsetTop + 120;
+        const articleEnd = (articleScroll.current as any).offsetHeight + articleBegin;
 
+        const paragraphs = (document.querySelectorAll('.article-block_item') as any)
+
+        paragraphs.forEach((p: any, id: number) => {
+            const offsetTop = p.offsetTop + articleBegin
+
+            const isFirst = id === 0 ? 0 : offsetTop
+            const isLast = id === paragraphs.length - 1 ? articleEnd : (offsetTop + p.offsetHeight) + 72
+
+            const newParagraphPosition = {
+                paragraphBegin: isFirst,
+                paragraphEnd: isLast,
+            }
+
+            return setParagraphPosition([...paragraphPosition, newParagraphPosition])
+        });
+    }, [])
 
     return (
         <div
@@ -222,7 +235,7 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
                                 {articleData.content.map((a: any, idx: number) => {
                                     const isFirst = idx === 0
                                     return (
-                                        <div key={idx}>
+                                        <div className='article-block_item' key={idx}>
                                             {!isFirst && <h2 >{a.title}</h2>}
                                             <div
                                                 dangerouslySetInnerHTML={{ __html: a.description }}

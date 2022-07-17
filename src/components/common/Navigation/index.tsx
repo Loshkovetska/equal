@@ -27,19 +27,19 @@ const Navigation = observer(() => {
       <div className="navigation__content">
         <div className="navigation__list">
           {menuItems.map((m, ind) => (
-            <>
+            <div key={ind}>
               <Link
                 className={classNames(
                   'navigation__item',
-                  (m.link == pathname) && 'active',
+                  (m.link === pathname) && 'active',
                 )}
                 to={m.link}
-                key={ind}
+
                 onClick={() => changeMenuState()}
               >
                 {m.title}
 
-              </Link></>
+              </Link></div>
           ))}
         </div>
         <button

@@ -7,14 +7,13 @@ import CursorBall from '../components/common/CursorBall'
 import Footer from '../components/common/Footer'
 import BlogContent from '../components/BlogContent'
 import useLocoScroll from '../mocks/useLocoScroll'
-import { useLocation } from 'react-router'
 
 import { api } from '../api'
 
 const BlogPage = observer(() => {
   const [loading, setLoading] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
-  const pathname = useLocation();
+
   useLocoScroll(!loading)
 
   useEffect(() => {

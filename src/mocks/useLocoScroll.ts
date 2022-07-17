@@ -6,12 +6,14 @@ import 'locomotive-scroll/src/locomotive-scroll.scss'
 import { runInAction } from 'mobx'
 import GlobalState from '../stores/GlobalState'
 import { useLocation } from 'react-router'
-import { isSafariDesktop, is_safari } from './info'
+import { isSafariDesktop } from './info'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function useLocoScroll(start: boolean) {
   const { pathname } = useLocation()
+
+  const pathnameCondition = 'cases' || 'blog'
   useEffect(() => {
     if (!start) return
     let locoScroll: any = null
@@ -80,7 +82,7 @@ export default function useLocoScroll(start: boolean) {
       () => {
         locoScroll && locoScroll.update()
       },
-      pathname.includes('cases') ? 1000 : 1500,
+      pathname.includes(pathnameCondition) ? 1000 : 1500,
     )
 
     ScrollTrigger.defaults({ scroller: '.smooth' })
@@ -99,5 +101,5 @@ export default function useLocoScroll(start: boolean) {
         })
       }
     }
-  }, [start, pathname])
+  }, [start, pathname, pathnameCondition])
 }

@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-import ProgressBar from 'react-progressbar-on-scroll'
 import Header from '../components/common/Header'
 import PreLoader from '../components/PreLoader'
 import { observer } from 'mobx-react'
@@ -9,7 +8,6 @@ import BlogArticle from '../components/BlogArticle'
 import { useLocation, useParams } from 'react-router'
 import { runInAction } from 'mobx'
 import GlobalState from '../stores/GlobalState'
-import Estimate from '../components/Estimate'
 import ScrollToTop from '../components/common/ScrollToTop'
 import useLocoScroll from '../mocks/useLocoScroll'
 import { api } from '../api'
@@ -33,13 +31,13 @@ const BlogArticlePage = observer(() => {
     setTimeout(() => {
       setLoading(false)
     }, 1000)
-  }, [])
+  }, [pathname])
 
   useEffect(() => {
     runInAction(() => {
       GlobalState.menuIsOpen = false
     })
-  }, [])
+  }, [pathname])
 
   useEffect(() => {
     if (!loading && container) {
@@ -52,20 +50,20 @@ const BlogArticlePage = observer(() => {
   if (typeof window === 'undefined' || !window.document) {
     return <></>
   }
-
+  const locoScroll = (GlobalState.locoScroll as any)
   useEffect(() => {
-    if (GlobalState.locoScroll) {
-      ; (GlobalState.locoScroll as any).on('scroll', (args: any) => {
+    if (locoScroll) {
+      locoScroll.on('scroll', (args: any) => {
         if (args.scroll.y) {
           const defineScrollOne = args.limit / 100
           const scrollProgress = args.scroll.y / defineScrollOne;
           (document.querySelector(
             '.progressBar',
-          ) as any).style.backgroundImage = "linear-gradient(to right, " + `#e1f23a ${scrollProgress}%` + ", " + 'transparent 0px' + ")";
+          ) as any).style.backgroundImage = `linear-gradient(to right,#e1f23a ${scrollProgress}%, transparent 0px)`;
         }
       })
     }
-  }, [GlobalState.locoScroll])
+  }, [locoScroll])
 
   const [articleItem, setArticleData] = useState<any>(null);
 
