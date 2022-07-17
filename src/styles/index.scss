@@ -16,6 +16,15 @@
   font-display: swap;
 }
 @font-face {
+  font-family: "AeonikTrialMediumItalic";
+  src: url("../fonts/Aeonik-MediumItalic.otf");
+  src: local("AeonikTRIAL MediumItalic"), local("AeonikTRIAL-MediumItalic"),
+    url("../fonts/Aeonik-MediumItalic.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
   font-family: "AeonikTrial";
   src: url("../fonts/AeonikTRIAL-Bold.otf");
   src: local("AeonikTRIAL Bold"), local("AeonikTRIAL-Bold"), url("../fonts/AeonikTRIAL-Bold.otf") format("opentype");

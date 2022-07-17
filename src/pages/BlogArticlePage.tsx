@@ -18,7 +18,6 @@ const BlogArticlePage = observer(() => {
   const { pathname } = useLocation()
   const container = useRef(null)
   const scroll = useRef(null)
-  const progressScroll = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
   useLocoScroll(!loading)
@@ -54,25 +53,17 @@ const BlogArticlePage = observer(() => {
   useEffect(() => {
     if (GlobalState.locoScroll) {
       ; (GlobalState.locoScroll as any).on('scroll', (args: any) => {
-
         if (args.scroll.y) {
           const defineScrollOne = args.limit / 100
           const scrollProgress = Math.floor(args.scroll.y / defineScrollOne);
           (document.querySelector(
             '.progressBar',
           ) as any).style.backgroundImage = "linear-gradient(to right, " + `#e1f23a ${scrollProgress}%` + ", " + 'transparent 0px' + ")";
-          // ) as any).style.backgroundImage = 'linear-gradient(to right, #e1f23a 10%, transparent 0px);'
-          // if (progressScroll.current) {
-          //   console.log("🚀 ~ file: BlogArticlePage.tsx ~ line 61 ~ ; ~ scrollProgress", scrollProgress)
-          //   // progressScroll.current.style.background = `-moz-linear-gradient(' + 'right' + ', ' + '#e1f23a ${scrollProgress}%' + ', ' + 'transparent 0px' + ')';`
-          //   // progressScroll.current.style.backgroundImage =
-          //   progressScroll.current.style.backgroundImage = 'red'
-          //   console.log("🚀 ~ file: BlogArticlePage.tsx ~ line 64 ~ ; ~ progressScroll.current.style", progressScroll.current.style)
-          // }
         }
       })
     }
-  }, [GlobalState.locoScroll])
+  }, [])
+
   return (
     <>
       {loading ? (
@@ -81,9 +72,7 @@ const BlogArticlePage = observer(() => {
         <>
           <div ref={scroll}></div>
           <ScrollToTop headerContent={scroll} />
-
-
-          <div ref={progressScroll} className="progressBar"></div>
+          <article className="progressBar"></article>
 
           <div className="smooth" data-scroll-container ref={containerRef}>
             <Header classlist="header-fixed" />

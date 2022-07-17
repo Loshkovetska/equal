@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
@@ -85,7 +85,8 @@ const BlogItem = observer(({ item }: { item: any }) => {
         <div className="blog-item__title">{item.title}</div>
         <div className="blog-item__type">{item.types.join(' / ')}  <div className="blog-item_read-time_mobile">
           {item.readTime} min read
-        </div></div>
+        </div>
+        </div>
       </div>
 
       <div className='item__img'>
