@@ -1,4 +1,6 @@
 import './blogArticle.scss'
+import { useLocation, useParams } from 'react-router'
+
 import MagnetButton from '../common/MagnetButton'
 import BlogRelatedSlider from '../BlogRelatedSlider'
 import SplitText from '../common/SplitText'
@@ -8,10 +10,16 @@ import GlobalState from '../../stores/GlobalState'
 import ScrollToTopIcon from "../../images/icons/arrow_scrollToTop.svg"
 import ScrollToPlugin from 'gsap/ScrollToPlugin'
 import { observer } from 'mobx-react'
-
+import {
+    FacebookShareButton,
+    LinkedinShareButton,
+    TwitterShareButton,
+} from "react-share";
 import { useEffect, useState, useRef } from 'react'
 
 const BlogArticle = observer(({ articleData }: { articleData: any }) => {
+    const { pathname } = useLocation()
+    console.log("🚀 ~ file: index.tsx ~ line 22 ~ BlogArticle ~ pathname", pathname)
 
     gsap.registerPlugin(ScrollToPlugin);
     const topRef = useRef<HTMLDivElement>(null)
@@ -311,38 +319,50 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
                                     className="article__share-list_title"
                                 >Share with:</span>
 
-                                <div className="shareItem">
-                                    <SplitText
-                                        target={true}
-                                        text={'Twitter'}
-                                        path={'./Twitter'}
-                                        classList="shareItem_link"
-                                    />
-                                </div>
-                                <div className="shareItem">
-                                    <SplitText
-                                        target={true}
-                                        text={'Facebook'}
-                                        path={'./Facebook'}
-                                        classList="shareItem_link"
-                                    />
-                                </div>
-                                <div className="shareItem">
-                                    <SplitText
-                                        target={true}
-                                        text={'Linkedin'}
-                                        path={'./Linkedin'}
-                                        classList="shareItem_link"
-                                    />
-                                </div>
-                                <div className="shareItem">
-                                    <SplitText
-                                        target={true}
-                                        text={'Instagram'}
-                                        path={'./Instagram'}
-                                        classList="shareItem_link"
-                                    />
-                                </div>
+                                <TwitterShareButton
+
+                                    url={pathname}
+                                    title={articleData.title}
+                                >
+                                    <div className="shareItem">
+                                        <SplitText
+                                            target={false}
+                                            text={'Twitter'}
+                                            path={''}
+                                            classList="shareItem_link"
+                                        />
+                                    </div>
+                                </TwitterShareButton>
+                                <FacebookShareButton
+
+                                    url={pathname}
+                                    quote={articleData.title}
+                                >
+                                    <div className="shareItem">
+                                        <SplitText
+                                            target={false}
+                                            text={'Facebook'}
+                                            path={''}
+                                            classList="shareItem_link"
+                                        />
+                                    </div>
+                                </FacebookShareButton>
+
+                                <LinkedinShareButton
+
+                                    url={pathname}
+                                    source={pathname}
+                                    title={articleData.title}
+                                >
+                                    <div className="shareItem">
+                                        <SplitText
+                                            target={false}
+                                            text={'Linkedin'}
+                                            path={''}
+                                            classList="shareItem_link"
+                                        />
+                                    </div>
+                                </LinkedinShareButton>
                             </div>
                         </div>
                     </div>
