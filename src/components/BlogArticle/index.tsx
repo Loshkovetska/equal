@@ -173,10 +173,7 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
         if (articleCurrentScroll) {
             const articleBegin = articleCurrentScroll.offsetTop + 120;
             const articleEnd = articleCurrentScroll.offsetHeight + articleBegin;
-            const currentTitlesBlock = (titlesBlock.current as any);
-
             const paragraphs = (document.querySelectorAll('.article-block_item') as any)
-
             const localPosition = [] as any
 
             paragraphs.forEach((p: any, id: number) => {
@@ -192,7 +189,6 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
                 localPosition.push(newParagraphPosition)
                 return
             });
-            console.log("🚀 ~ file: index.tsx ~ line 193 ~ paragraphs.forEach ~ localPosition", localPosition)
             setParagraphPosition(localPosition)
         }
     }, [articleCurrentScroll])
@@ -255,15 +251,38 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
                     {/* Основний контент */}
                     <div className="article__content-col">
                         <div className="article__content-right">
-                            <div>
-                                <h1 >{articleData.title}</h1>
-                                <div className="article__type">
-                                    <div className="article_read-time">
-                                        {articleData.readTime} min read
-                                    </div>
-                                    {articleData.types.join(' / ')}
+
+                            <h1 >{articleData.title}</h1>
+                            <div className="article__type">
+                                <div className="article_read-time">
+                                    {articleData.readTime} min read
+                                </div>
+                                {articleData.types.join(' / ')}
+                            </div>
+
+
+                            <div className="article__content-info_mobile slide-wrap">
+
+                                <p className='article__content-titles slide-up'>
+                                    Table of contents
+                                </p>
+                                <div className='article__content-info_mobile_col'>
+                                    {articleContent &&
+                                        articleContent.map((p: any, id: number) => {
+                                            return (
+                                                <button
+                                                    onClick={() => {
+                                                        const paragraphBegin = paragraphPosition[id].paragraphBegin as any
+                                                        (GlobalState.locoScroll as any).scrollTo(paragraphBegin, 0, 2000)
+                                                    }}
+                                                    className={`slide-up article__content-titles_title`} key={id} >
+                                                    {p.title}
+                                                </button>
+                                            )
+                                        })}
                                 </div>
                             </div>
+
                             <div ref={articleScroll} id="article-block">
                                 {articleContent &&
                                     articleContent.map((a: any, idx: number) => {
@@ -288,7 +307,9 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
                             </div>
 
                             <div className="article__share-list">
-                                <span>Share with:</span>
+                                <span
+                                    className="article__share-list_title"
+                                >Share with:</span>
 
                                 <div className="shareItem">
                                     <SplitText

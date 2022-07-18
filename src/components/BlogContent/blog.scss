@@ -255,6 +255,7 @@
       display: flex;
       width: fit-content;
       margin-left: 20px;
+      margin-bottom: 0px !important;
       font-size: 18px;
       line-height: 20px;
       display: flex;
@@ -271,6 +272,12 @@
         top: 8px;
         left: -12px;
       }
+    }
+    @media (max-width: 576px) {
+      font-size: 16px;
+    }
+    @media (max-width: 450px) {
+      font-size: 14px;
     }
   }
 
