@@ -116,6 +116,23 @@
                     img {
                         margin-top: 80px;
                     }
+                    a {
+                        font-size: 16px;
+                        padding-top: 12px;
+                        padding-bottom: 0px;
+
+                        font-family: "AeonikTrialMediumItalic";
+                        display: inline-block;
+                        font-weight: 500;
+                        font-style: italic;
+                        color: #2b2727;
+                        line-height: 22px;
+                        border-bottom: 1px solid #2b2727;
+                        &:hover {
+                            border-bottom: 2px solid transparent;
+                            background-color: transparent !important;
+                        }
+                    }
                     p {
                         padding-top: 20px;
                         margin-bottom: 0;
@@ -144,23 +161,6 @@
                                 border-bottom: 2px solid transparent;
                                 background-color: #e1f23a;
                             }
-                        }
-                    }
-                    a {
-                        font-size: 16px;
-                        padding-top: 12px;
-                        padding-bottom: 0px;
-
-                        font-family: "AeonikTrialMediumItalic";
-                        display: inline-block;
-                        font-weight: 500;
-                        font-style: italic;
-                        color: #2b2727;
-                        line-height: 22px;
-                        border-bottom: 1px solid #2b2727;
-                        &:hover {
-                            border-bottom: 2px solid transparent;
-                            background-color: transparent !important;
                         }
                     }
                 }
@@ -548,10 +548,28 @@
         background-color: white;
         border: none;
         text-decoration: none;
+        cursor: pointer;
         @media (max-width: 500px) {
             font-size: 12px;
             line-height: 160%;
         }
+    }
+    .activeTitle {
+        font-weight: 700 !important;
+        position: relative;
+        &::before {
+            position: absolute;
+            left: 0px;
+            bottom: -5px;
+            right: 0px;
+            width: 100%;
+            height: 2px;
+            background-color: #2b2727;
+            display: flex;
+            flex-direction: row;
+            content: "";
+        }
+        // border-bottom: 1px solid #2b2727;
     }
 }
 #article-block {

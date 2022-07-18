@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import { isTouch } from '../../mocks/info'
 import GlobalState from '../../stores/GlobalState'
 import MagnetButton from '../common/MagnetButton'
@@ -17,8 +17,8 @@ import 'animate.css/animate.css'
 const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, }) => {
   const [blogData, setState] = useState<any>(null)
   const { pathname } = useLocation()
-
-
+  const location = useLocation()
+  console.log("🚀 ~ file: index.tsx ~ line 21 ~ BlogContent ~ location", location)
 
   const showMoreArticle = () => {
     if (GlobalState.locoScroll) (GlobalState.locoScroll as any).update()
@@ -31,16 +31,19 @@ const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, 
   }
 
   useEffect(() => {
-    if (GlobalState.locoScroll) (GlobalState.locoScroll as any).update()
     const filterByType = (dt: any) => {
       const tab = pathname.includes('-')
         ? pathname.split('/').pop()?.split('-').join(' ')
         : pathname.split('/').pop()
+
+      console.log("🚀 ~ file: index.tsx ~ line 34 ~ filterByType ~ tab", tab)
       switch (tab) {
         case 'blog':
           setState(dt)
+          ScrollTrigger.refresh()
           break
         case `${tab}`:
+          console.log("🚀 ~ file: index.tsx ~ line 44 ~ filterByType ~ tab", tab)
           const res = dt.filter((d: any) => {
             let flag = false
             d.types.forEach((t: string) => {
@@ -55,16 +58,21 @@ const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, 
             } else {
               return null
             }
-
           })
 
           setState(res)
+          ScrollTrigger.refresh()
           break
       }
     }
-    filterByType(blog)
+    if (blog) {
+      filterByType(blog)
+
+    }
+    if (GlobalState.locoScroll) (GlobalState.locoScroll as any).update()
+
     ScrollTrigger.refresh()
-  }, [pathname, blog])
+  }, [pathname, blog, menuState])
 
   useEffect(() => {
     setTimeout(() => {
@@ -105,13 +113,24 @@ const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, 
         <div className="blog-menu__block">
           {menuState &&
             menuState.map((m: any, idx: number) => {
-              return <SplitText
-                classList={`blog-menu__item ${pathname.split('/').pop() === m.link.split('/').pop() && 'active'}`}
-                text={`${m.title} [${m.count}]`}
-                path={m.link}
-                target={false}
-                key={idx}
-              />
+              console.log("🚀 ~ file: index.tsx ~ line 130 ~ menuState.map ~ m", m)
+
+              const splittedPath = pathname.split('/')
+
+              const path = splittedPath.length > 2 ? `${splittedPath[0]}/${splittedPath[1]}/${m.link}` : `${pathname}/${m.link}`
+              const isAllPath = m.link === 'blog' ? '/blog' : path
+              const isActive = pathname.split('/').pop() === m.link.split('/').pop()
+              console.log("🚀 ~ file: index.tsx ~ line 122 ~ menuState.map ~ isAllPath", isAllPath)
+              return <div
+                className="blog-menu__block-fragment"
+                key={idx}>
+                <SplitText
+                  classList={`blog-menu__item ${isActive && 'active'}`}
+                  text={`${m.title} [${m.count}]`}
+                  path={isAllPath}
+                  target={false}
+                />
+              </div>
             })}
         </div>
       </div>

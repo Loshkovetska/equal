@@ -11,13 +11,16 @@ import { observer } from 'mobx-react'
 
 import { useEffect, useState, useRef } from 'react'
 
-
 const BlogArticle = observer(({ articleData }: { articleData: any }) => {
+
     gsap.registerPlugin(ScrollToPlugin);
     const topRef = useRef<HTMLDivElement>(null)
     const titlesBlock = useRef<HTMLDivElement>(null)
+
     const articleScroll = useRef<HTMLDivElement>(null)
     const [paragraphPosition, setParagraphPosition] = useState<any>([])
+
+    const [activeParagraph, setActiveParagraph] = useState<any>(null);
 
     useEffect(() => {
         setTimeout(() => {
@@ -124,7 +127,6 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
             <span class="full-text">${w}</span>
           </span>
             `
-
                         html +=
                             ind + 1 !== content.split(' ').length
                                 ? `<span class="whitespace"></span>`
@@ -151,11 +153,11 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
         if (GlobalState.locoScroll) {
             ; (GlobalState.locoScroll as any).on('scroll', (args: any) => {
                 const articleBegin = (articleScroll.current as any).offsetTop + 120;
-                const windowHalfHeigth = window.innerHeight / 2;
                 const currentTitlesBlock = (titlesBlock.current as any);
+                const windowHalfHeigth = window.innerHeight / 2;
                 const currentArticleBlock = (articleScroll.current as any);
                 const isStartAfterScroll = Math.floor((windowHalfHeigth - (currentTitlesBlock.offsetHeight / 2)) + args.scroll.y)
-                const isEndOfArticle = currentArticleBlock.offsetHeight + 20
+                const isEndOfArticle = currentArticleBlock.offsetHeight - currentTitlesBlock.offsetHeight
                 if (args.scroll.y > isEndOfArticle) return
                 if (isStartAfterScroll < articleBegin) {
                     (document.querySelector('.article__content-info',) as any).style.top = `${articleBegin}px`
@@ -166,27 +168,49 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
         }
     }, [GlobalState.locoScroll])
 
+    const articleCurrentScroll = articleScroll && (articleScroll.current as any);
     useEffect(() => {
-        const articleBegin = (articleScroll.current as any).offsetTop + 120;
-        const articleEnd = (articleScroll.current as any).offsetHeight + articleBegin;
+        if (articleCurrentScroll) {
+            const articleBegin = articleCurrentScroll.offsetTop + 120;
+            const articleEnd = articleCurrentScroll.offsetHeight + articleBegin;
+            const currentTitlesBlock = (titlesBlock.current as any);
 
-        const paragraphs = (document.querySelectorAll('.article-block_item') as any)
+            const paragraphs = (document.querySelectorAll('.article-block_item') as any)
 
-        paragraphs.forEach((p: any, id: number) => {
-            const offsetTop = p.offsetTop + articleBegin
+            const localPosition = [] as any
 
-            const isFirst = id === 0 ? 0 : offsetTop
-            const isLast = id === paragraphs.length - 1 ? articleEnd : (offsetTop + p.offsetHeight) + 72
+            paragraphs.forEach((p: any, id: number) => {
+                const offsetTop = p.offsetTop + articleBegin
 
-            const newParagraphPosition = {
-                paragraphBegin: isFirst,
-                paragraphEnd: isLast,
-            }
+                const isFirst = id === 0 ? 0 : offsetTop
+                const isLast = id === paragraphs.length - 1 ? articleEnd : (offsetTop + p.offsetHeight) + 72
 
-            return setParagraphPosition([...paragraphPosition, newParagraphPosition])
-        });
-    }, [])
+                const newParagraphPosition = {
+                    paragraphBegin: isFirst,
+                    paragraphEnd: isLast,
+                }
+                localPosition.push(newParagraphPosition)
+                return
+            });
+            console.log("🚀 ~ file: index.tsx ~ line 193 ~ paragraphs.forEach ~ localPosition", localPosition)
+            setParagraphPosition(localPosition)
+        }
+    }, [articleCurrentScroll])
 
+    useEffect(() => {
+        if (GlobalState.locoScroll) {
+            ; (GlobalState.locoScroll as any).on('scroll', (args: any) => {
+                for (let i = 0; i < paragraphPosition.length; i++) {
+                    const elem = paragraphPosition[i];
+                    if (elem.paragraphBegin <= args.scroll.y && elem.paragraphEnd >= args.scroll.y) {
+                        setActiveParagraph(i)
+                    }
+                }
+            })
+        }
+    }, [GlobalState.locoScroll, paragraphPosition])
+
+    const articleContent = articleData && (articleData.content as any)
     return (
         <div
             ref={topRef}
@@ -209,13 +233,22 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
                             <p className='article__content-titles slide-up'>
                                 Table of contents
                             </p>
-                            {(articleData.content as any).map((p: any, id: number) => {
-                                return (
-                                    <button className="slide-up article__content-titles_title" key={id} >
-                                        {p.title}
-                                    </button>
-                                )
-                            })}
+                            <div>
+                                {articleContent &&
+                                    articleContent.map((p: any, id: number) => {
+                                        const isActive = id === activeParagraph && 'activeTitle'
+                                        return (
+                                            <button
+                                                onClick={() => {
+                                                    const paragraphBegin = paragraphPosition[id].paragraphBegin as any
+                                                    (GlobalState.locoScroll as any).scrollTo(paragraphBegin, 0, 2000)
+                                                }}
+                                                className={`slide-up article__content-titles_title ${isActive}`} key={id} >
+                                                {p.title}
+                                            </button>
+                                        )
+                                    })}
+                            </div>
                         </div>
                     </div>
 
@@ -232,17 +265,18 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
                                 </div>
                             </div>
                             <div ref={articleScroll} id="article-block">
-                                {articleData.content.map((a: any, idx: number) => {
-                                    const isFirst = idx === 0
-                                    return (
-                                        <div className='article-block_item' key={idx}>
-                                            {!isFirst && <h2 >{a.title}</h2>}
-                                            <div
-                                                dangerouslySetInnerHTML={{ __html: a.description }}
-                                            ></div>
-                                        </div>
-                                    )
-                                })}
+                                {articleContent &&
+                                    articleContent.map((a: any, idx: number) => {
+                                        const isFirst = idx === 0
+                                        return (
+                                            <div className='article-block_item' key={idx}>
+                                                {!isFirst && <h2 >{a.title}</h2>}
+                                                <div
+                                                    dangerouslySetInnerHTML={{ __html: a.description }}
+                                                ></div>
+                                            </div>
+                                        )
+                                    })}
 
                                 <button className="scrollToTop"
                                     onClick={() => {

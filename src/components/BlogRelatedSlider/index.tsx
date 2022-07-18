@@ -45,11 +45,7 @@ const BlogRelatedSlider = observer(({ relatedTypes }: { relatedTypes: any }) => 
 	// 			break
 	// 	}
 	// }
-	useEffect(() => {
-		if (GlobalState.locoScroll) (GlobalState.locoScroll as any).update()
-		setState(blog)
-		ScrollTrigger.refresh()
-	}, [pathname])
+
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -88,6 +84,12 @@ const BlogRelatedSlider = observer(({ relatedTypes }: { relatedTypes: any }) => 
 	const isFirstSlide = currentPosition === 1
 	const isLastSlide = casesData && currentPosition === casesData.length
 
+	useEffect(() => {
+		if (GlobalState.locoScroll) (GlobalState.locoScroll as any).update()
+		setState(blog)
+		ScrollTrigger.refresh()
+	}, [pathname])
+
 	return (
 		<>
 			<section className="blog-slider">
@@ -118,28 +120,31 @@ const BlogRelatedSlider = observer(({ relatedTypes }: { relatedTypes: any }) => 
 						</button>
 					</div>
 				</div>
-				<Slider
-					ref={sliderRef}
-					{...settings}>
-					{casesData &&
-						casesData.map((c: any, idx: number) => {
-							return <div className='blog-item' key={idx}>
-								<Animated
-									animationIn="fadeInUp"
-									animationOut="fadeIn"
-									animationInDuration={1500}
-									animationOutDuration={1500}
-									isVisible={true}
-									key={idx}
-									style={{ width: '100%' }}
-								>
-									{' '}
-									<BlogItem item={c} />
-									{' '}
-								</Animated>
-							</div>
-						})}
-				</Slider>
+
+				<div className="blog-slider_block">
+					<Slider
+						ref={sliderRef}
+						{...settings}>
+						{casesData &&
+							casesData.map((c: any, idx: number) => {
+								return <div className='blog-item' key={idx}>
+									<Animated
+										animationIn="fadeInUp"
+										animationOut="fadeIn"
+										animationInDuration={1500}
+										animationOutDuration={1500}
+										isVisible={true}
+										key={idx}
+										style={{ width: '100%' }}
+									>
+										{' '}
+										<BlogItem item={c} />
+										{' '}
+									</Animated>
+								</div>
+							})}
+					</Slider>
+				</div>
 
 				<div className="blog-slider_controls-mobile">
 					<button

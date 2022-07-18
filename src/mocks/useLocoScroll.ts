@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger)
 export default function useLocoScroll(start: boolean) {
   const { pathname } = useLocation()
 
-  const pathnameCondition = 'cases' || 'blog'
+  const pathnameCondition = pathname === 'cases' ? 'cases' : 'blog'
   useEffect(() => {
     if (!start) return
     let locoScroll: any = null

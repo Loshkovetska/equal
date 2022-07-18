@@ -5,6 +5,7 @@ import LazyLoader from '../LazyLoader'
 import { observer } from 'mobx-react'
 import { runInAction } from 'mobx'
 import GlobalState from '../../stores/GlobalState'
+import ScrollTrigger from 'gsap/ScrollTrigger'
 
 const formats = {
   img: 'png.webp',
@@ -32,6 +33,8 @@ const BlogItem = observer(({ item }: { item: any }) => {
           })
         })
       }
+      ScrollTrigger.refresh()
+
     })
   }, [])
 
@@ -67,7 +70,7 @@ const BlogItem = observer(({ item }: { item: any }) => {
 
   return (
     <Link
-      to={`/blog/${item.id}`}
+      to={`/article/${item.id}`}
       className="blog-item__img"
       cursor-class="cursor-blog"
       ref={(el) =>
@@ -82,9 +85,10 @@ const BlogItem = observer(({ item }: { item: any }) => {
 
       <div className="blog-item__info">
         <div className="blog-item__title">{item.title}</div>
-        <div className="blog-item__type">{item.types.join(' / ')}  <div className="blog-item_read-time_mobile">
-          {item.readTime} min read
-        </div>
+        <div className="blog-item__type">{item.types.join(' / ')}
+          <div className="blog-item_read-time_mobile">
+            {item.readTime} min read
+          </div>
         </div>
       </div>
 

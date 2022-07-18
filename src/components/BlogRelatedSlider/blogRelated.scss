@@ -29,10 +29,10 @@
 		font-weight: 700;
 	}
 }
-
-.blog-item {
-	border: 1px solid #8f8f8f;
+.blog-slider_block {
+	border-top: 1px solid #8f8f8f;
 }
+
 .blog-slider_controls-mobile {
 	display: none;
 	@media screen and (max-width: 768px) {
@@ -50,16 +50,14 @@
 	border: 1px solid #8f8f8f;
 	background-color: white;
 	cursor: pointer;
-
-	img {
-		width: 17px;
-		height: 10px;
-	}
-
 	transition: all 0.3s ease-in-out;
 
 	&:hover {
 		filter: invert(1);
+	}
+	img {
+		width: 17px;
+		height: 10px;
 	}
 }
 .control_left {

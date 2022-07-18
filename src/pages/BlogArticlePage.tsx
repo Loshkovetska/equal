@@ -20,7 +20,14 @@ const BlogArticlePage = observer(() => {
   const container = useRef(null)
   const scroll = useRef(null)
   const containerRef = useRef<HTMLDivElement>(null)
-
+  const [articleItem, setArticleData] = useState<any>(null);
+  const article = async () => {
+    if (!articleItem) {
+      const article = await api.blog.getArticle(id)
+      setArticleData(article);
+    }
+  }
+  article();
   useLocoScroll(!loading)
 
   useEffect(() => {
@@ -29,6 +36,7 @@ const BlogArticlePage = observer(() => {
     document.title = `Equal Design | ${pathname.split('/').pop()}`
     setLoading(true)
     setTimeout(() => {
+
       setLoading(false)
     }, 1000)
   }, [pathname])
@@ -65,19 +73,9 @@ const BlogArticlePage = observer(() => {
     }
   }, [locoScroll])
 
-  const [articleItem, setArticleData] = useState<any>(null);
-
-  const article = async () => {
-    if (!articleItem) {
-      const article = await api.blog.getArticle(id)
-      setArticleData(article);
-    }
-  }
-  article();
-
   return (
     <>
-      {loading || !articleItem ? (
+      {loading || articleItem === null ? (
         <PreLoader loading={loading} />
       ) : (
         <>
