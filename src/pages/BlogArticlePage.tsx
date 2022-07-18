@@ -13,33 +13,32 @@ import useLocoScroll from '../mocks/useLocoScroll'
 import { api } from '../api'
 
 const BlogArticlePage = observer(() => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const { pathname } = useLocation()
   const { id } = useParams()
 
   const container = useRef(null)
   const scroll = useRef(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const [articleItem, setArticleData] = useState<any>(null);
-  const article = async () => {
-    if (!articleItem) {
-      const article = await api.blog.getArticle(id)
-      setArticleData(article);
-    }
-  }
-  article();
-  useLocoScroll(!loading)
 
   useEffect(() => {
     document.body.style.background = 'transparent'
 
     document.title = `Equal Design | ${pathname.split('/').pop()}`
     setLoading(true)
-    setTimeout(() => {
-
-      setLoading(false)
-    }, 1000)
   }, [pathname])
+
+  const [articleItem, setArticleData] = useState<any>(null);
+
+  const article = async () => {
+    if (!articleItem) {
+      const article = await api.blog.getArticle(id)
+      setArticleData(article);
+      setLoading(false)
+    }
+  }
+  article();
+  useLocoScroll(!loading)
 
   useEffect(() => {
     runInAction(() => {
@@ -75,23 +74,21 @@ const BlogArticlePage = observer(() => {
 
   return (
     <>
-      {loading || articleItem === null ? (
-        <PreLoader loading={loading} />
-      ) : (
-        <>
-          <div ref={scroll}></div>
-          <ScrollToTop headerContent={scroll} />
-          <article className="progressBar"></article>
+      {!loading && articleItem !== null && <>
+        <div ref={scroll}></div>
+        <ScrollToTop headerContent={scroll} />
+        <article className="progressBar"></article>
 
-          <div className="smooth" data-scroll-container ref={containerRef}>
-            <Header classlist="header-fixed" />
-            <BlogArticle articleData={articleItem} />
-            <Footer />
-          </div>
+        <div className="smooth" data-scroll-container ref={containerRef}>
+          <Header classlist="header-fixed" />
+          <BlogArticle articleData={articleItem} />
+          <Footer />
+        </div>
 
-          <CursorBall />
-        </>
-      )}
+        <CursorBall />
+      </>
+      }
+      <PreLoader loading={loading} />
     </>
   )
 })

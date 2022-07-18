@@ -4,14 +4,11 @@
   left: 0;
   z-index: 1100;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: #2b2727;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  animation: loader 0.7s linear;
-  animation-delay: 0.3s;
 
   .loader-arrow {
     animation: arrowAnimate 2s linear infinite;
@@ -24,7 +21,17 @@
       transform: rotate(359deg);
     }
   }
+}
 
+.animate {
+  animation: loader 0.7s ease-in-out;
+  animation-delay: 0s;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
   @keyframes loader {
     0% {
       transform: translate(0, 0);
@@ -32,6 +39,7 @@
 
     100% {
       transform: translate(0, -100vh);
+      display: none;
     }
   }
 }

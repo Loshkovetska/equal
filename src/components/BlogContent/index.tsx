@@ -18,7 +18,6 @@ const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, 
   const [blogData, setState] = useState<any>(null)
   const { pathname } = useLocation()
   const location = useLocation()
-  console.log("🚀 ~ file: index.tsx ~ line 21 ~ BlogContent ~ location", location)
 
   const showMoreArticle = () => {
     if (GlobalState.locoScroll) (GlobalState.locoScroll as any).update()
@@ -35,15 +34,12 @@ const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, 
       const tab = pathname.includes('-')
         ? pathname.split('/').pop()?.split('-').join(' ')
         : pathname.split('/').pop()
-
-      console.log("🚀 ~ file: index.tsx ~ line 34 ~ filterByType ~ tab", tab)
       switch (tab) {
         case 'blog':
           setState(dt)
           ScrollTrigger.refresh()
           break
         case `${tab}`:
-          console.log("🚀 ~ file: index.tsx ~ line 44 ~ filterByType ~ tab", tab)
           const res = dt.filter((d: any) => {
             let flag = false
             d.types.forEach((t: string) => {
@@ -52,7 +48,6 @@ const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, 
               }
               return
             })
-
             if (flag) {
               return d
             } else {
@@ -65,10 +60,12 @@ const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, 
           break
       }
     }
-    if (blog) {
-      filterByType(blog)
+    setTimeout(() => {
+      if (blog) {
+        filterByType(blog)
+      }
 
-    }
+    });
     if (GlobalState.locoScroll) (GlobalState.locoScroll as any).update()
 
     ScrollTrigger.refresh()
@@ -77,7 +74,10 @@ const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, 
   useEffect(() => {
     setTimeout(() => {
       const title = document.querySelectorAll('.selected-blog__title-text')
-      if (!title || !document.querySelector('.blog-page')) return
+      const blogPage1 = document.querySelectorAll('.blog-page')
+      const blogPage = document.querySelectorAll('.blog-page2')
+      if (!blogPage1) return
+      // if (!) return
       var tl = gsap.timeline({
         ease: 'power2',
         scrollTrigger: {
@@ -86,18 +86,20 @@ const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, 
           toggleActions: 'play none none none',
         },
       })
+
       tl.from(title, {
         autoAlpha: 0,
         yPercent: 100,
-        duration: 0.6,
-        stagger: 0.2,
+        duration: 0.7,
+        stagger: 0,
       })
 
-      const casePage = document.querySelector('.blog-page')
+
+      const casePage = document.querySelectorAll('.blog-page')
       if (casePage) {
         document.body.style.background = 'transparent'
       }
-    })
+    }, 1000)
   }, [])
 
   return (
@@ -109,31 +111,38 @@ const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, 
         />
       </section >
 
-      <div className="blog-menu">
-        <div className="blog-menu__block">
-          {menuState &&
-            menuState.map((m: any, idx: number) => {
-              console.log("🚀 ~ file: index.tsx ~ line 130 ~ menuState.map ~ m", m)
-
-              const splittedPath = pathname.split('/')
-
-              const path = splittedPath.length > 2 ? `${splittedPath[0]}/${splittedPath[1]}/${m.link}` : `${pathname}/${m.link}`
-              const isAllPath = m.link === 'blog' ? '/blog' : path
-              const isActive = pathname.split('/').pop() === m.link.split('/').pop()
-              console.log("🚀 ~ file: index.tsx ~ line 122 ~ menuState.map ~ isAllPath", isAllPath)
-              return <div
-                className="blog-menu__block-fragment"
-                key={idx}>
-                <SplitText
-                  classList={`blog-menu__item ${isActive && 'active'}`}
-                  text={`${m.title} [${m.count}]`}
-                  path={isAllPath}
-                  target={false}
-                />
-              </div>
-            })}
+      <Animated
+        animationIn="fadeInUp"
+        animationOut="fadeIn"
+        animationInDuration={1000}
+        animationOutDuration={1000}
+        animationInDelay={700}
+        isVisible={true}
+        style={{ width: '100%' }}
+      >
+        <div className="blog-menu">
+          <div className="blog-menu__block">
+            {
+              menuState.map((m: any, idx: number) => {
+                const splittedPath = pathname.split('/')
+                const path = splittedPath.length > 2 ? `${splittedPath[0]}/${splittedPath[1]}/${m.link}` : `${pathname}/${m.link}`
+                const isAllPath = m.link === 'blog' ? '/blog' : path
+                const isActive = pathname.split('/').pop() === m.link.split('/').pop()
+                return <div
+                  className="blog-menu__block-fragment"
+                  key={idx}>
+                  <SplitText
+                    classList={`blog-menu__item ${isActive && 'active'}`}
+                    text={`${m.title} [${m.count}]`}
+                    path={isAllPath}
+                    target={false}
+                  />
+                </div>
+              })}
+          </div>
         </div>
-      </div>
+      </Animated>
+
       <section className="blog-page">
 
         <div className="blog-list">
@@ -144,8 +153,9 @@ const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, 
                 <Animated
                   animationIn="fadeInUp"
                   animationOut="fadeIn"
-                  animationInDuration={1500}
-                  animationOutDuration={1500}
+                  animationInDuration={1000}
+                  animationOutDuration={1000}
+                  animationInDelay={800}
                   isVisible={true}
                   key={idx}
                   style={{ width: '100%' }}
@@ -165,6 +175,10 @@ const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, 
           click={() => showMoreArticle()}
         />
       </section >
+
+
+
+
     </>
   )
 })

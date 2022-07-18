@@ -34,7 +34,6 @@ const BlogItem = observer(({ item }: { item: any }) => {
         })
       }
       ScrollTrigger.refresh()
-
     })
   }, [])
 
@@ -85,10 +84,18 @@ const BlogItem = observer(({ item }: { item: any }) => {
 
       <div className="blog-item__info">
         <div className="blog-item__title">{item.title}</div>
-        <div className="blog-item__type">{item.types.join(' / ')}
-          <div className="blog-item_read-time_mobile">
+        <div className="blog-item__type">
+          {item.types.map((type: string, id: number) => {
+            const isLast = id === item.types.length - 1
+            return (
+              <span key={id}>{type}{!isLast && <span> /&nbsp;</span>}</span>
+            )
+          })}
+
+
+          <p className="blog-item_read-time_mobile">
             {item.readTime} min read
-          </div>
+          </p>
         </div>
       </div>
 

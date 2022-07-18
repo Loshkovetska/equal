@@ -11,7 +11,8 @@ import useLocoScroll from '../mocks/useLocoScroll'
 import { api } from '../api'
 
 const BlogPage = observer(() => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [isShowContent, setShowContent] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const [menuState, setMenuState] = useState<any>(null);
   const [blogData, setBlogData] = useState<any>(null)
@@ -22,8 +23,8 @@ const BlogPage = observer(() => {
     document.body.style.background = 'transparent'
     document.title = 'Equal Design | Blog page'
     setLoading(true)
-
-  }, [menuState, blogData])
+    setShowContent(false)
+  }, [])
 
   useEffect(() => {
     if (!loading) {
@@ -40,35 +41,38 @@ const BlogPage = observer(() => {
     if (!menuState) {
       const menu = await api.blog.getMenu();
       setMenuState(menu);
-
+    }
+  }
+  const articleData = async () => {
+    if (!blogData) {
       const blog = await api.blog.getBlog();
-      console.log("🚀 ~ file: BlogPage.tsx ~ line 45 ~ menu ~ blog", blog)
       if (blog) {
-
         setBlogData(blog);
+        setLoading(false)
         setTimeout(() => {
-          setLoading(false)
-        }, 1000)
+          setShowContent(true)
+        }, 900);
       }
     }
   }
+  articleData();
   menu();
 
   return (
     <>
-      {!loading ? (
-        <>
-          <div className="smooth" data-scroll-container ref={containerRef}>
-            <Header />
+      {isShowContent && <>
+        <div className="smooth" data-scroll-container ref={containerRef}>
+          <Header />
 
-            <BlogContent menuState={menuState} blog={blogData} />
-            <Footer />
-          </div>
-          <CursorBall />
-        </>
-      ) : (
-        <PreLoader loading={loading} />
-      )}
+          <BlogContent menuState={menuState} blog={blogData} />
+          <Footer />
+        </div>
+        <CursorBall />
+      </>
+      }
+
+      <PreLoader loading={loading} />
+
     </>
   )
 })

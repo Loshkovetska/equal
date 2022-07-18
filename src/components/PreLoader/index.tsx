@@ -1,10 +1,26 @@
 import './preloader.scss'
+import { useState, useEffect, useRef } from 'react'
 
 const PreLoader = ({ loading }: { loading: any }) => {
-    
-  if (!loading) return <></>
+  const loaderRef = useRef<HTMLDivElement>(null)
+  console.log("🚀 ~ file: index.tsx ~ line 5 ~ PreLoader ~ loading", loading)
+
+  useEffect(() => {
+    if (!loading) {
+      (loaderRef.current as any).classList.add('animate')
+      setTimeout(() => {
+        (loaderRef.current as any).classList.remove('page-loader');
+        (loaderRef.current as any).style.display = 'none'
+      }, 700)
+    }
+    // if(!)
+
+  }, [loading])
+
   return (
-    <div className="page-loader">
+    <div className={`page-loader`}
+      ref={loaderRef}
+    >
       <svg
         className="loader-arrow"
         width="76"
