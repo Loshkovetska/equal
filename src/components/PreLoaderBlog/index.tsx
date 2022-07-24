@@ -1,9 +1,20 @@
 import './preloader.scss'
+import { useEffect, useRef } from 'react'
 
-const PreLoader = () => {
+const PreLoaderBlog = ({ setLoading, isCloseLoading }: { setLoading: any, isCloseLoading: any }) => {
+  const loaderRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (isCloseLoading) {
+      (loaderRef.current as any).classList.add('animate_loader')
+      setTimeout(() => {
+        setLoading(false)
+      }, 700)
+    }
+  }, [isCloseLoading])
 
   return (
-    <div className='page-loader'>
+    <div className='page-loader_blog' ref={loaderRef}>
       <svg
         className="loader-arrow"
         width="76"
@@ -23,4 +34,4 @@ const PreLoader = () => {
   )
 }
 
-export default PreLoader;
+export default PreLoaderBlog;

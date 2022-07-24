@@ -39,8 +39,6 @@ const MagnetButton = ({
       magnet.current && (magnet.current as any).getBoundingClientRect()
     const relX = e.pageX - position.left - position.width / 2
     const relY = e.pageY - position.top - position.height / 2
-    const width = e.target && e.target.offsetWidth
-    const height = e.target && e.target.offsetHeight
 
     gsap.to(e.target, {
       duration: 0.15,
@@ -53,27 +51,27 @@ const MagnetButton = ({
   useEffect(() => {
     if (!isTouch) {
       if (magnet.current) {
-        ;(magnet.current as Element).addEventListener('mouseenter', mouseEnter)
-        ;(magnet.current as Element).addEventListener('mouseleave', mouseLeave)
-        ;(magnet.current as Element).addEventListener('mousemove', mouseMove)
+        ; (magnet.current as Element).addEventListener('mouseenter', mouseEnter)
+          ; (magnet.current as Element).addEventListener('mouseleave', mouseLeave)
+          ; (magnet.current as Element).addEventListener('mousemove', mouseMove)
       }
     }
 
     return () => {
       if (!isTouch) {
         if (magnet.current) {
-          ;(magnet.current as Element).removeEventListener(
+          ; (magnet.current as Element).removeEventListener(
             'mouseenter',
             mouseEnter,
           )
-          ;(magnet.current as Element).removeEventListener(
-            'mouseleave',
-            mouseLeave,
-          )
-          ;(magnet.current as Element).removeEventListener(
-            'mousemove',
-            mouseMove,
-          )
+            ; (magnet.current as Element).removeEventListener(
+              'mouseleave',
+              mouseLeave,
+            )
+            ; (magnet.current as Element).removeEventListener(
+              'mousemove',
+              mouseMove,
+            )
         }
       }
     }

@@ -7,22 +7,25 @@ import CursorBall from '../components/common/CursorBall'
 import Footer from '../components/common/Footer'
 import CasesContent from '../components/CasesContent'
 import useLocoScroll from '../mocks/useLocoScroll'
-import { useLocation } from 'react-router'
 
 const CasesPage = observer(() => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [isShowFooter, setShowFooter] = useState(false)
+
   const containerRef = useRef<HTMLDivElement>(null)
-  const pathname = useLocation();
-  useLocoScroll(!loading )
+  useLocoScroll(!loading)
 
   useEffect(() => {
-        document.body.style.background = 'transparent'
 
     document.title = 'Equal Design | Cases page'
     setLoading(true)
     setTimeout(() => {
+      document.body.style.background = 'transparent'
       setLoading(false)
     }, 1000)
+    setTimeout(() => {
+      setShowFooter(true)
+    }, 4000);
   }, [])
 
   useEffect(() => {
@@ -39,13 +42,13 @@ const CasesPage = observer(() => {
   return (
     <>
       {loading ? (
-        <PreLoader loading={loading} />
+        <PreLoader />
       ) : (
         <>
           <div className="smooth" data-scroll-container ref={containerRef}>
             <Header />
             <CasesContent />
-            <Footer />
+            {isShowFooter && <Footer />}
           </div>
           <CursorBall />
         </>

@@ -13,7 +13,7 @@
 .contact-form {
   padding: 48px 45px 190px;
   position: relative;
-
+  opacity: 1 !important;
   @media (max-width: 650px) {
     padding: 30px 24px 70px;
   }
@@ -208,13 +208,13 @@
     background: #e1f23a;
   }
 
-  [type='radio']:checked,
-  [type='radio']:not(:checked) {
+  [type="radio"]:checked,
+  [type="radio"]:not(:checked) {
     position: absolute;
     left: -9999px;
   }
-  [type='radio']:checked + label,
-  [type='radio']:not(:checked) + label {
+  [type="radio"]:checked + label,
+  [type="radio"]:not(:checked) + label {
     position: relative;
     cursor: pointer;
     display: inline-block;
@@ -235,7 +235,7 @@
     }
   }
 
-  [type='radio']:checked + label {
+  [type="radio"]:checked + label {
     border: 1px solid #e1f23a;
     color: #000;
     background: #e1f23a;
@@ -297,7 +297,7 @@
   }
 
   .custom-check + label::before {
-    content: '';
+    content: "";
     display: inline-block;
     width: 20px;
     height: 20px;
@@ -311,11 +311,11 @@
   }
 
   .custom-check:checked + label::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 20px;
     height: 20px;
-    background: url('../../images/icons/check.svg') center no-repeat, #e1f23a;
+    background: url("../../images/icons/check.svg") center no-repeat, #e1f23a;
     left: 0px;
     top: 0px;
     border: 1px solid #e1f23a;
@@ -325,7 +325,7 @@
     height: 49px;
     border: none;
     border-bottom: 1px solid #ffffff;
-    background: transparent ;
+    background: transparent;
     font-size: 22px;
     line-height: 150%;
     color: #fff;
@@ -344,7 +344,7 @@
     &:-webkit-autofill:hover,
     &:-webkit-autofill:focus,
     &:-webkit-autofill:active {
-     -webkit-background-clip: text;
+      -webkit-background-clip: text;
     }
     &:-webkit-autofill {
       -webkit-text-fill-color: #fff !important;

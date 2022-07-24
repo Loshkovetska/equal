@@ -1,9 +1,8 @@
 import React from "react";
 import { useEffect, useState, useRef } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { isTouch } from '../../mocks/info'
 import GlobalState from '../../stores/GlobalState'
-import blog from '../BlogArticle/blog'
 import ScrollToTopIcon from "../../images/icons/arrow_scrollToTop.svg"
 import BlogItem from '../BlogItem'
 import gsap from 'gsap'
@@ -15,36 +14,14 @@ import { Animated } from 'react-animated-css'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import 'animate.css/animate.css'
+import { api } from '../../api'
 
 const BlogRelatedSlider = observer(({ relatedTypes }: { relatedTypes: any }) => {
-	const [casesData, setState] = useState<any>(null)
+	const [blogData, setState] = useState<any>(null)
 	const [currentPosition, setCurrentPosition] = useState<Number>(1)
 	const { pathname } = useLocation()
+	const { id } = useParams()
 	const sliderRef = useRef<Slider | null>(null)
-	// const filterByType = (dt: any) => {
-	// 	const tab = pathname.includes('-')
-	// 		? pathname.split('/').pop()?.split('-').join(' ')
-	// 		: pathname.split('/').pop()
-	// 	switch (tab) {
-	// 		case 'blog':
-	// 			setState(dt)
-	// 			break
-	// 		case `${tab}`:
-	// 			const res = dt.filter((d: any) => {
-	// 				let flag = false
-	// 				d.types.forEach((t: string) => {
-	// 					if (t.toLocaleLowerCase().includes(tab.toLocaleLowerCase())) {
-	// 						flag = true
-	// 					}
-	// 				})
-
-	// 				if (flag) return d
-	// 			})
-
-	// 			setState(res)
-	// 			break
-	// 	}
-	// }
 
 
 	useEffect(() => {
@@ -82,14 +59,38 @@ const BlogRelatedSlider = observer(({ relatedTypes }: { relatedTypes: any }) => 
 		slidesToScroll: 1,
 	};
 	const isFirstSlide = currentPosition === 1
-	const isLastSlide = casesData && currentPosition === casesData.length
+	const isLastSlide = blogData && currentPosition === blogData.length
+	const isOnlyOneSlide = blogData && blogData.length > 1
+
+	const articleData = async () => {
+		if (!blogData) {
+			const blog = await api.blog.getBlog();
+			if (blog) {
+				const withoutCurrent = blog.filter((article: any) => {
+					if (article.id != id) {
+						return article
+					} else {
+						return
+					}
+				})
+				setState(withoutCurrent)
+			}
+		}
+	}
 
 	useEffect(() => {
 		if (GlobalState.locoScroll) (GlobalState.locoScroll as any).update()
-		setState(blog)
+		articleData();
+
 		ScrollTrigger.refresh()
 	}, [pathname])
 
+
+	if (blogData) {
+		if (blogData.length === 0) {
+			return <></>
+		}
+	}
 	return (
 		<>
 			<section className="blog-slider">
@@ -98,7 +99,7 @@ const BlogRelatedSlider = observer(({ relatedTypes }: { relatedTypes: any }) => 
 						Related articles
 					</h4>
 
-					<div className="blog-slider_controls">
+					{isOnlyOneSlide && <div className="blog-slider_controls">
 						<button
 							className={`blog-slider_controls-btn control_left ${isFirstSlide && 'disable'}`}
 							onClick={() => {
@@ -118,35 +119,36 @@ const BlogRelatedSlider = observer(({ relatedTypes }: { relatedTypes: any }) => 
 						>
 							<img src={ScrollToTopIcon} width={17} height={10} alt="" />
 						</button>
-					</div>
+					</div>}
 				</div>
 
 				<div className="blog-slider_block">
 					<Slider
 						ref={sliderRef}
 						{...settings}>
-						{casesData &&
-							casesData.map((c: any, idx: number) => {
-								return <div className='blog-item' key={idx}>
-									<Animated
-										animationIn="fadeInUp"
-										animationOut="fadeIn"
-										animationInDuration={1500}
-										animationOutDuration={1500}
-										isVisible={true}
-										key={idx}
-										style={{ width: '100%' }}
-									>
+						{blogData &&
+							blogData.map((c: any, idx: number) => {
+								return <Animated
+									animationIn="fadeInUp"
+									animationOut="fadeIn"
+									animationInDuration={1500}
+									animationOutDuration={1500}
+									isVisible={true}
+									key={idx}
+									style={{ width: '100%' }}
+								>
+									<div className='blog-item'
+										style={{ borderTop: '1px solid transparent' }}>
 										{' '}
 										<BlogItem item={c} />
 										{' '}
-									</Animated>
-								</div>
+									</div>
+								</Animated>
 							})}
 					</Slider>
 				</div>
 
-				<div className="blog-slider_controls-mobile">
+				{isOnlyOneSlide && <div className="blog-slider_controls-mobile">
 					<button
 						className={`blog-slider_controls-btn control_left ${isFirstSlide && 'disable'}`}
 						onClick={() => {
@@ -166,7 +168,7 @@ const BlogRelatedSlider = observer(({ relatedTypes }: { relatedTypes: any }) => 
 					>
 						<img src={ScrollToTopIcon} width={17} height={10} alt="" />
 					</button>
-				</div>
+				</div>}
 			</section >
 		</>
 	)

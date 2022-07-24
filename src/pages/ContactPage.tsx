@@ -15,7 +15,7 @@ import Footer, { CustomEmail } from '../components/common/Footer'
 import useLocoScroll from '../mocks/useLocoScroll'
 
 const ContactPage = () => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const containerRef = useRef<HTMLDivElement>(null)
   const header = useRef<any>(null)
   useLocoScroll(!loading)
@@ -31,10 +31,10 @@ const ContactPage = () => {
   useEffect(() => {
     if (header.current && !loading) {
       console.log(loading)
-      ;(header.current as HTMLElement).style.opacity = '1'
-      ;(header.current as HTMLElement).style.transitionDuration = '0.3s'
-      ;(header.current as HTMLElement).style.transitionDelay = '1s'
-      ;(header.current as HTMLElement).style.transitionProperty = 'opacity'
+        ; (header.current as HTMLElement).style.opacity = '1'
+        ; (header.current as HTMLElement).style.transitionDuration = '0.3s'
+        ; (header.current as HTMLElement).style.transitionDelay = '1s'
+        ; (header.current as HTMLElement).style.transitionProperty = 'opacity'
     }
   }, [loading])
 
@@ -47,7 +47,7 @@ const ContactPage = () => {
   return (
     <>
       {loading ? (
-        <PreLoader loading={loading} />
+        <PreLoader />
       ) : (
         <div data-load-container>
           <div className="smooth" data-scroll-container ref={containerRef}>

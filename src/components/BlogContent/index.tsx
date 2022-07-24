@@ -30,46 +30,13 @@ const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, 
   }
 
   useEffect(() => {
-    const filterByType = (dt: any) => {
-      const tab = pathname.includes('-')
-        ? pathname.split('/').pop()?.split('-').join(' ')
-        : pathname.split('/').pop()
-      switch (tab) {
-        case 'blog':
-          setState(dt)
-          ScrollTrigger.refresh()
-          break
-        case `${tab}`:
-          const res = dt.filter((d: any) => {
-            let flag = false
-            d.types.forEach((t: string) => {
-              if (t.toLocaleLowerCase().includes(tab.toLocaleLowerCase())) {
-                return flag = true
-              }
-              return
-            })
-            if (flag) {
-              return d
-            } else {
-              return null
-            }
-          })
-
-          setState(res)
-          ScrollTrigger.refresh()
-          break
-      }
-    }
-    setTimeout(() => {
-      if (blog) {
-        filterByType(blog)
-      }
-
-    });
     if (GlobalState.locoScroll) (GlobalState.locoScroll as any).update()
 
+    if (blog) {
+      setState(blog)
+    }
     ScrollTrigger.refresh()
-  }, [pathname, blog, menuState])
+  }, [pathname, blog])
 
   useEffect(() => {
     setTimeout(() => {
@@ -77,7 +44,7 @@ const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, 
       const blogPage1 = document.querySelectorAll('.blog-page')
       const blogPage = document.querySelectorAll('.blog-page2')
       if (!blogPage1) return
-      // if (!) return
+
       var tl = gsap.timeline({
         ease: 'power2',
         scrollTrigger: {
@@ -93,8 +60,6 @@ const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, 
         duration: 0.7,
         stagger: 0,
       })
-
-
       const casePage = document.querySelectorAll('.blog-page')
       if (casePage) {
         document.body.style.background = 'transparent'
@@ -102,6 +67,7 @@ const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, 
     }, 1000)
   }, [])
 
+  const isMoreThanFiveArticle = blogData && blogData.length > 5
   return (
     <>
       <section className="blog-page">
@@ -122,58 +88,61 @@ const BlogContent = observer(({ menuState, blog }: { menuState: any, blog: any, 
       >
         <div className="blog-menu">
           <div className="blog-menu__block">
-            {
-              menuState.map((m: any, idx: number) => {
-                const splittedPath = pathname.split('/')
-                const path = splittedPath.length > 2 ? `${splittedPath[0]}/${splittedPath[1]}/${m.link}` : `${pathname}/${m.link}`
-                const isAllPath = m.link === 'blog' ? '/blog' : path
-                const isActive = pathname.split('/').pop() === m.link.split('/').pop()
-                return <div
-                  className="blog-menu__block-fragment"
-                  key={idx}>
-                  <SplitText
-                    classList={`blog-menu__item ${isActive && 'active'}`}
-                    text={`${m.title} [${m.count}]`}
-                    path={isAllPath}
-                    target={false}
-                  />
-                </div>
-              })}
+            {menuState.map((m: any, idx: number) => {
+              const splittedPath = pathname.split('/')
+              const path = splittedPath.length > 2 ? `${splittedPath[0]}/${splittedPath[1]}/${m.link}` : `${pathname}/${m.link}`
+              const isAllPath = m.link === 'blog' ? '/blog' : path
+              const isActive = pathname.split('/').pop() === m.link.split('/').pop()
+              return <div
+                className="blog-menu__block-fragment"
+                key={idx}>
+                <SplitText
+                  classList={`blog-menu__item ${isActive && 'active'}`}
+                  text={`${m.title} [${m.count}]`}
+                  path={isAllPath}
+                  target={false}
+                />
+              </div>
+            })}
           </div>
         </div>
       </Animated>
 
-      <section className="blog-page">
+      <section className="blog-page" style={{
+        opacity: 1,
+        marginBottom: isMoreThanFiveArticle ? 0 : '300px'
+      }}>
 
         <div className="blog-list">
           {blogData &&
             blogData.map((c: any, idx: number) => {
               const isFirstFive = idx < 5 ? 'blog-item' : 'blog-item d-none'
-              return <div className={isFirstFive} key={idx}>
-                <Animated
-                  animationIn="fadeInUp"
-                  animationOut="fadeIn"
-                  animationInDuration={1000}
-                  animationOutDuration={1000}
-                  animationInDelay={800}
-                  isVisible={true}
-                  key={idx}
-                  style={{ width: '100%' }}
-                >
+              return <Animated
+                animationIn="fadeInUp"
+                animationOut="fadeIn"
+                animationInDuration={1000}
+                animationOutDuration={1000}
+                animationInDelay={800}
+                isVisible={true}
+                key={idx}
+                style={{ width: '100%' }}
+                className='blog-item'
+              >
+                <div key={idx}>
                   {' '}
                   <BlogItem item={c} />
                   {' '}
-                </Animated>
-              </div>
+                </div>
+              </Animated>
             })}
         </div>
-        <MagnetButton
+        {isMoreThanFiveArticle && <MagnetButton
           text="Show more"
           classList="btn-primary btn-blog"
           wrapperClass="appear appear--home"
           path={''}
           click={() => showMoreArticle()}
-        />
+        />}
       </section >
 
 

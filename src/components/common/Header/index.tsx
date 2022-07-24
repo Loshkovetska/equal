@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import logo from '../../../images/icons/logo.svg'
 import { ReactComponent as Hamburger } from '../../../images/icons/hamburger.svg'
 import Navigation from '../Navigation'
@@ -15,6 +15,11 @@ import { isSafariDesktop, isTouch, is_firefox } from '../../../mocks/info'
 const Header = observer(({ classlist = '' }: { classlist?: string }) => {
   const header = useRef<any>(null)
   const { pathname } = useLocation()
+  const params = useParams()
+
+  const splittedRoute = pathname.split('/')[1]
+  const isCase = splittedRoute === 'case' ? '.case' : '.article'
+
   useEffect(() => {
     const headerFix = document.querySelector('.header-fixed')
 
@@ -59,7 +64,7 @@ const Header = observer(({ classlist = '' }: { classlist?: string }) => {
                 pin: true,
                 scrub: 1,
                 start: 'top top+=30',
-                endTrigger: '.case',
+                endTrigger: isCase,
                 end: 'bottom bottom',
                 pinSpacing: false,
               },
@@ -90,7 +95,7 @@ const Header = observer(({ classlist = '' }: { classlist?: string }) => {
               pin: true,
               scrub: 1,
               start: 'top top',
-              endTrigger: '.case',
+              endTrigger: isCase,
               end: 'bottom bottom',
               pinSpacing: false,
             },
@@ -130,7 +135,6 @@ const Header = observer(({ classlist = '' }: { classlist?: string }) => {
       const headerRect = header?.getBoundingClientRect()
 
         ; (GlobalState.locoScroll as any).on('scroll', (args: any) => {
-          // console.log(args.direction)
           if (args.scroll.y > headerRect.bottom) {
             if (args.direction == 'up') {
               document.querySelector('header.showup')!.classList.add('display')
@@ -150,11 +154,6 @@ const Header = observer(({ classlist = '' }: { classlist?: string }) => {
     }
   }, [GlobalState.locoScroll])
 
-  useEffect(() => {
-    window.onscroll = () => {
-      console.log('scroll')
-    }
-  })
 
   return (
     <>
@@ -183,7 +182,7 @@ const Header = observer(({ classlist = '' }: { classlist?: string }) => {
                 classList="link-rotate"
                 text="our cases"
                 path="/cases"
-                target={false}
+                target={true}
               />
             </div>
           </div>

@@ -19,7 +19,6 @@ import { useEffect, useState, useRef } from 'react'
 
 const BlogArticle = observer(({ articleData }: { articleData: any }) => {
     const { pathname } = useLocation()
-    console.log("🚀 ~ file: index.tsx ~ line 22 ~ BlogArticle ~ pathname", pathname)
 
     gsap.registerPlugin(ScrollToPlugin);
     const topRef = useRef<HTMLDivElement>(null)
@@ -47,7 +46,7 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
                         toggleActions: 'play none none none',
                     },
                     y: (item as any).innerHeight < 140 ? '110%' : '150',
-                    duration: 0.8,
+                    duration: 1,
                     stagger: 0.15,
                 })
             })
@@ -62,7 +61,7 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
                     transformOrigin: 'center',
                     y: 200,
                     opacity: 0,
-                    duration: 0.8,
+                    duration: 0.7,
                     stagger: 0.15,
                 })
             })
@@ -85,7 +84,7 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
             if (articlePage) {
                 document.body.style.background = 'transparent'
             }
-        }, 500)
+        }, 400)
     }, [])
 
     const splitAnchor = (l: any) => {
@@ -181,14 +180,16 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
         if (articleCurrentScroll) {
             const articleBegin = articleCurrentScroll.offsetTop + 120;
             const articleEnd = articleCurrentScroll.offsetHeight + articleBegin;
+            const currentTitlesBlock = (titlesBlock.current as any);
+
             const paragraphs = (document.querySelectorAll('.article-block_item') as any)
             const localPosition = [] as any
 
             paragraphs.forEach((p: any, id: number) => {
                 const offsetTop = p.offsetTop + articleBegin
 
-                const isFirst = id === 0 ? 0 : offsetTop
-                const isLast = id === paragraphs.length - 1 ? articleEnd : (offsetTop + p.offsetHeight) + 72
+                const isFirst = id === 0 ? 0 : offsetTop + (currentTitlesBlock.offsetHeight * 2)
+                const isLast = id === paragraphs.length - 1 ? articleEnd : (offsetTop + p.offsetHeight) + 72 + (currentTitlesBlock.offsetHeight * 2)
 
                 const newParagraphPosition = {
                     paragraphBegin: isFirst,
@@ -257,19 +258,19 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
                     </div>
 
                     {/* Основний контент */}
-                    <div className="article__content-col">
+                    <div className="article__content-col  slide-wrap">
                         <div className="article__content-right">
 
-                            <h1 >{articleData.title}</h1>
-                            <div className="article__type">
+                            <h1 className=' slide-up' >{articleData.title}</h1>
+                            <div className="article__type slide-up">
                                 <div className="article_read-time">
                                     {articleData.readTime} min read
                                 </div>
                                 {articleData.types.join(' / ')}
                             </div>
 
-
-                            <div className="article__content-info_mobile slide-wrap">
+                            {/* Titles mobile */}
+                            <div className="article__content-info_mobile slide-up">
 
                                 <p className='article__content-titles slide-up'>
                                     Table of contents
@@ -291,12 +292,12 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
                                 </div>
                             </div>
 
-                            <div ref={articleScroll} id="article-block">
+                            <div ref={articleScroll} className='slide-up' id="article-block">
                                 {articleContent &&
                                     articleContent.map((a: any, idx: number) => {
                                         const isFirst = idx === 0
                                         return (
-                                            <div className='article-block_item' key={idx}>
+                                            <div className='article-block_item  ' key={idx}>
                                                 {!isFirst && <h2 >{a.title}</h2>}
                                                 <div
                                                     dangerouslySetInnerHTML={{ __html: a.description }}
@@ -370,6 +371,7 @@ const BlogArticle = observer(({ articleData }: { articleData: any }) => {
             </div>
 
             <BlogRelatedSlider relatedTypes={articleData.types} />
+
             <div className="article__bottom">
                 <MagnetButton
                     text="read all articles"

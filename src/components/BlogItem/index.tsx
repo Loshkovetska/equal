@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import LazyLoader from '../LazyLoader'
 import { observer } from 'mobx-react'
@@ -68,8 +67,8 @@ const BlogItem = observer(({ item }: { item: any }) => {
   }, [])
 
   return (
-    <Link
-      to={`/article/${item.id}`}
+    <a
+      href={`/article/${item.id}`}
       className="blog-item__img"
       cursor-class="cursor-blog"
       ref={(el) =>
@@ -123,7 +122,7 @@ const BlogItem = observer(({ item }: { item: any }) => {
         )}
       </div>
 
-    </Link>
+    </a>
   )
 })
 

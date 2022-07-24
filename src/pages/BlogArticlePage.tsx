@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import Header from '../components/common/Header'
-import PreLoader from '../components/PreLoader'
+import PreLoaderBlog from '../components/PreLoaderBlog'
 import { observer } from 'mobx-react'
 import CursorBall from '../components/common/CursorBall'
 import Footer from '../components/common/Footer'
@@ -14,6 +14,10 @@ import { api } from '../api'
 
 const BlogArticlePage = observer(() => {
   const [loading, setLoading] = useState(true)
+  const [isCloseLoading, setCloseLoading] = useState(false)
+  const [isShowContent, setShowContent] = useState(false)
+  const [isShowFooter, setShowFooter] = useState(false)
+
   const { pathname } = useLocation()
   const { id } = useParams()
 
@@ -23,22 +27,13 @@ const BlogArticlePage = observer(() => {
 
   useEffect(() => {
     document.body.style.background = 'transparent'
-
-    document.title = `Equal Design | ${pathname.split('/').pop()}`
+    setShowContent(false)
+    setShowFooter(false)
     setLoading(true)
   }, [pathname])
 
   const [articleItem, setArticleData] = useState<any>(null);
 
-  const article = async () => {
-    if (!articleItem) {
-      const article = await api.blog.getArticle(id)
-      setArticleData(article);
-      setLoading(false)
-    }
-  }
-  article();
-  useLocoScroll(!loading)
 
   useEffect(() => {
     runInAction(() => {
@@ -57,6 +52,8 @@ const BlogArticlePage = observer(() => {
   if (typeof window === 'undefined' || !window.document) {
     return <></>
   }
+  useLocoScroll(isShowContent)
+
   const locoScroll = (GlobalState.locoScroll as any)
   useEffect(() => {
     if (locoScroll) {
@@ -72,9 +69,31 @@ const BlogArticlePage = observer(() => {
     }
   }, [locoScroll])
 
+  const article = async () => {
+    if (!articleItem) {
+      const article = await api.blog.getArticle(id)
+      if (article) {
+        document.title = `Equal Design | ${article.title}`
+        document.body.style.background = 'transparent'
+        setArticleData(article);
+        setCloseLoading(true)
+        setTimeout(() => {
+          setShowContent(true)
+        }, 350);
+        setTimeout(() => {
+          setShowFooter(true)
+        }, 4000);
+      }
+    }
+  }
+  article();
+
+
   return (
     <>
-      {!loading && articleItem !== null && <>
+      {loading && <PreLoaderBlog setLoading={setLoading} isCloseLoading={isCloseLoading} />}
+
+      {isShowContent && <>
         <div ref={scroll}></div>
         <ScrollToTop headerContent={scroll} />
         <article className="progressBar"></article>
@@ -82,13 +101,12 @@ const BlogArticlePage = observer(() => {
         <div className="smooth" data-scroll-container ref={containerRef}>
           <Header classlist="header-fixed" />
           <BlogArticle articleData={articleItem} />
-          <Footer />
+          {isShowFooter && <Footer />}
         </div>
 
         <CursorBall />
       </>
       }
-      <PreLoader loading={loading} />
     </>
   )
 })

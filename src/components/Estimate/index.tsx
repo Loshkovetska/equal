@@ -9,7 +9,7 @@ const Estimate = () => {
   const history = useNavigate()
   useEffect(() => {
     setTimeout(() => {
-      if(!estimate.current) return
+      if (!estimate.current) return
       gsap.to('.estimate', {
         opacity: 1,
         duration: 0.6,
@@ -23,7 +23,7 @@ const Estimate = () => {
           pin: true,
           scrub: 1,
           start: 'bottom bottom',
-          endTrigger: '.case-next',
+          endTrigger: '.case__bottom',
           end: 'top bottom+=500',
           pinSpacing: false,
           onLeave: () => {

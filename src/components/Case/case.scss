@@ -81,9 +81,11 @@
   }
 
   &__content-row {
-    display: flex;
-    @media (max-width: 768px) {
-      flex-direction: column;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    column-gap: 5vw;
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr;
     }
   }
 
@@ -162,8 +164,6 @@
           .word {
             line-height: 160%;
             font-size: 0;
-          }
-          .full-text {
           }
 
           .char,

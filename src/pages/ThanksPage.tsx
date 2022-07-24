@@ -20,6 +20,7 @@ const ThanksPage = () => {
   useEffect(() => {
     document.title = 'Equal Design | Thanks page'
     document.body.style.background = '#2b2727'
+    console.log('ну пиздец');
 
     setLoading(true)
     setTimeout(() => {
@@ -29,10 +30,10 @@ const ThanksPage = () => {
 
   useEffect(() => {
     if (header.current) {
-      ;(header.current as HTMLElement).style.opacity = '1'
-      ;(header.current as HTMLElement).style.transitionDuration = '0.3s'
-      ;(header.current as HTMLElement).style.transitionDelay = '1s'
-      ;(header.current as HTMLElement).style.transitionProperty = 'opacity'
+      ; (header.current as HTMLElement).style.opacity = '1'
+        ; (header.current as HTMLElement).style.transitionDuration = '0.3s'
+        ; (header.current as HTMLElement).style.transitionDelay = '1s'
+        ; (header.current as HTMLElement).style.transitionProperty = 'opacity'
     }
   }, [])
 

@@ -1,17 +1,16 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import './case.scss'
 import MagnetButton from '../common/MagnetButton'
 import cases from './cases'
 import parse from 'html-react-parser'
 import gsap from 'gsap'
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+import { useEffect } from 'react'
 import Estimate from '../Estimate'
-import { isSafariDesktop, is_firefox } from '../../mocks/info'
 import SplitText from '../common/SplitText'
-import ReactDOMServer from 'react-dom/server'
 const Case = () => {
   const { pathname } = useLocation()
-  const navigate = useNavigate()
+
   useEffect(() => {
     setTimeout(() => {
       let section = document.querySelector('.case')
@@ -66,6 +65,7 @@ const Case = () => {
       const casePage = document.querySelector('.case')
       if (casePage) {
         document.body.style.background = 'transparent'
+        ScrollTrigger.refresh()
       }
     }, 500)
   }, [])
@@ -103,7 +103,7 @@ const Case = () => {
           const chars = content.split('')
           const res = []
           chars.forEach((c: any) => {
-            if (c != ' ') res.push(c)
+            if (c !== ' ') res.push(c)
           })
             ; (l as HTMLElement).style.setProperty('--char-total', `${res.length}`)
           let html = ''
@@ -119,7 +119,7 @@ const Case = () => {
             `
 
             html +=
-              ind + 1 != content.split(' ').length
+              ind + 1 !== content.split(' ').length
                 ? `<span class="whitespace"></span>`
                 : ''
           })
@@ -139,7 +139,7 @@ const Case = () => {
     })
 
     let next
-    if (idx + 1 != cases.length) {
+    if (idx + 1 !== cases.length) {
       next = cases[idx + 1]
     } else next = cases[0]
     window.location.href = `/case${next.link}`

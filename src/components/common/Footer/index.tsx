@@ -184,8 +184,8 @@ const Footer = observer(() => {
   useEffect(() => {
     if (!isSafariDesktop) {
       if (
-        pathname.split('/').pop() == 'text-us' ||
-        pathname.split('/').pop() == 'thanks'
+        pathname.split('/').pop() === 'text-us' ||
+        pathname.split('/').pop() === 'thanks'
       ) {
         const elems = document.querySelectorAll('.footer *')
         elems.forEach((e) => {
@@ -202,8 +202,8 @@ const Footer = observer(() => {
     if ((isSafariDesktop || is_safari) && !is_chrome) {
       ScrollTrigger.refresh()
       if (
-        pathname.split('/').pop() == 'text-us' ||
-        pathname.split('/').pop() == 'thanks'
+        pathname.split('/').pop() === 'text-us' ||
+        pathname.split('/').pop() === 'thanks'
       ) {
         document.body.classList.add('dark')
         const elems = document.querySelectorAll('.footer *')

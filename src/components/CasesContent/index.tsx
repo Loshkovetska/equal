@@ -136,14 +136,13 @@ const CasesContent = observer(() => {
       <div className="selected-cases__list cases-list">
         {casesData &&
           casesData.map((c: any, idx: number) => (
-            <div className="cases-item ">
+            <div className="cases-item " key={idx}>
               <Animated
                 animationIn="fadeInUp"
                 animationOut="fadeIn"
                 animationInDuration={1500}
                 animationOutDuration={1500}
                 isVisible={true}
-                key={idx}
               >
                 {' '}
                 <ParallaxCase item={c} />

@@ -169,7 +169,6 @@
   max-width: 1827px;
   margin: 0 auto;
   background-color: white;
-  border-top: 1px solid #8f8f8f;
   @media screen and (max-width: 1025px) {
     margin-bottom: 80px;
   }
@@ -183,8 +182,12 @@
   box-sizing: border-box;
   background-color: white;
   border: 1px solid #8f8f8f;
-  border-top: 1px solid transparent !important;
   transition: all 0.3s ease-in-out;
+  border-bottom: 1px solid transparent !important;
+
+  &:last-of-type {
+    border-bottom: 1px solid #8f8f8f !important;
+  }
   &:hover {
     background-color: #e1f23a;
   }
@@ -284,6 +287,8 @@
   &__img {
     display: flex;
     justify-content: space-between;
+    column-gap: 20px;
+
     padding-left: 4vw;
     width: 100%;
     overflow: hidden;

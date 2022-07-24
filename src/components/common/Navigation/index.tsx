@@ -34,7 +34,6 @@ const Navigation = observer(() => {
                   (m.link === pathname) && 'active',
                 )}
                 to={m.link}
-
                 onClick={() => changeMenuState()}
               >
                 {m.title}

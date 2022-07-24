@@ -15,6 +15,7 @@ import {
 import classNames from 'classnames'
 const ContactForm = () => {
   const refs = useRef<any>(Array())
+  const formRef = useRef<any>(null)
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     interestsOptions: Array(),
@@ -146,7 +147,8 @@ const ContactForm = () => {
   }
 
   useEffect(() => {
-    if (!refs.current) return
+    if (!refs.current || !formRef.current) return
+    formRef.current.style.opacity = '1'
     if (
       !is_firefox &&
       !isSafariDesktop &&
@@ -159,12 +161,13 @@ const ContactForm = () => {
         duration: 1.5,
         ease: 'power3.out',
       })
+
     } else {
       refs.current.forEach((element: any) => {
         element.classList.add('animated')
       })
     }
-  }, [])
+  }, [refs.current])
 
   const fileLoad = (e: any) => {
     var reader = new FileReader()
@@ -176,7 +179,9 @@ const ContactForm = () => {
   }
 
   return (
-    <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+    <form
+      ref={formRef}
+      className="contact-form" onSubmit={(e) => e.preventDefault()}>
       <div className="contact-form__text">
         <span
           className={classNames(
@@ -184,7 +189,7 @@ const ContactForm = () => {
             (isSafariDesktop ||
               (is_opera && is_win) ||
               (is_chrome && is_win)) &&
-              'safari',
+            'safari',
           )}
           ref={(el) => {
             refs.current && !refs.current.includes(el) && refs.current.push(el)
@@ -201,7 +206,7 @@ const ContactForm = () => {
               (isSafariDesktop ||
                 (is_opera && is_win) ||
                 (is_chrome && is_win)) &&
-                'safari',
+              'safari',
             )}
             ref={(el) => {
               refs.current &&
@@ -220,7 +225,7 @@ const ContactForm = () => {
             (isSafariDesktop ||
               (is_opera && is_win) ||
               (is_chrome && is_win)) &&
-              'safari',
+            'safari',
           )}
           ref={(el) => {
             refs.current && !refs.current.includes(el) && refs.current.push(el)

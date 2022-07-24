@@ -2,6 +2,7 @@
     padding: 45px 45px 180px;
     position: relative;
     opacity: 0;
+    min-height: 110vh;
 
     @media (max-width: 650px) {
         padding: 45px 24px 220px;
@@ -505,6 +506,8 @@
     display: flex;
     text-transform: uppercase;
     color: #2b2727;
+    column-gap: 0px !important;
+    margin-bottom: 72px !important;
     @media (max-width: 576px) {
         font-size: 16px;
         margin-bottom: 48px !important;
@@ -619,6 +622,13 @@
     border-bottom: 1px solid #8f8f8f;
     margin-bottom: 24px;
     position: relative;
+    display: flex;
+    align-items: flex-start !important;
+    flex-direction: column !important;
+
+    .article-block_item {
+        margin-bottom: 0px !important;
+    }
 }
 .scrollToTop {
     position: absolute;
@@ -691,6 +701,7 @@
             color: #2b2727;
             font-size: 14px;
             line-height: 110%;
+
             @media screen and (max-width: 768px) {
                 font-size: 14px !important;
             }

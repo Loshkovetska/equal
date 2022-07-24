@@ -19,7 +19,7 @@ import { CSSProperties } from 'react'
 import GlobalState from '../stores/GlobalState'
 
 const MainPage = observer(() => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const ref = useRef<any>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const { pathname } = useLocation()
@@ -49,7 +49,7 @@ const MainPage = observer(() => {
   return (
     <>
       {loading ? (
-        <PreLoader loading={loading} />
+        <PreLoader />
       ) : (
         <>
           <div ref={ref}></div>
